@@ -4,17 +4,21 @@
 - Log onto your digial ocean droplet and at the command prompt (root@bioinformatics:~# ) type:
 
 ```sh
-root@bioinformatics:~# mkdir /data
+mkdir /data
 ```
 
-This creates a data folder in your droplet.  This is the folder we will mount into our docker.  This is needed so you can retrieve your analysis results after you are done.
+- This creates a data folder in your droplet.  The folder we will mount into our docker and is needed so you can retrieve your analysis results after you are done.
+- Now pull the docker file
 
-root@bioinformroatics:~# docker pull bwawrik/bioinformatics:latest
+```sh
+docker pull bwawrik/bioinformatics:latest
+```
+- This pulls my bioinformatics docker.  It may take a few minutes since the docker is over six gigabites in size.
+- Start your docker by typing
 
-It will now download my bioinformatics docker.  This may take a second since the docker is over six gigabites in size.
-Then start your docker by typing
-
-root@bioinformatics:~# docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
+```sh
+docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
+```
 
 Congratulations !! You are now running my bioinformatics docker ! Perform all your analyses in /data. When you exit the docker your files will be in /data on your droplet.
 
