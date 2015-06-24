@@ -30,9 +30,9 @@ cd /data
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/232_R1_40k.fastq
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/232_R2_40k.fastq
 ```
--
+
 note: These two files represent forward and reverse reads of MySeq genome sequencing run. They are partial files to allow the assembly to complete in a reasonable amount of time. Together the files contain about 5*10^6 bp of sequence, which is about 1x coverage on the genome of SPR.
--
+
 
 ### Ray Assembly
 
