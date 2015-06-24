@@ -3,7 +3,9 @@
 - Create a droplet called 'bioinformatics'.
 - Log onto your digial ocean droplet and at the command prompt (root@bioinformatics:~# ) type:
 
-"root@bioinformatics:~# mkdir /data"
+```sh
+root@bioinformatics:~# mkdir /data
+```
 
 This creates a data folder in your droplet.  This is the folder we will mount into our docker.  This is needed so you can retrieve your analysis results after you are done.
 
