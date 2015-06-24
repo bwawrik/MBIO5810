@@ -1,7 +1,8 @@
 ## SSH KEYS
 
 ### ON PC
-- download Putty (http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip)
+- download Putty (http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip). 
+- Alternatively, you can use Xterm (http://mobaxterm.mobatek.net/) -- advanced users only
 - unzip putty.exe and puttygen.exe
 - open puttygen and press generate
 - move mouse around in blank area till key generation is complete
