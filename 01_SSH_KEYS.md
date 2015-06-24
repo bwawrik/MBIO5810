@@ -2,13 +2,13 @@
 
 ### ON PC
 - download Putty (http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip)
-        unzip putty.exe and puttygen.exe
-        open puttygen and press generate
-        move mouse around in blank area till key generation is complete
-        the passphrase is not required but adds an additional layer of security
-        save public key
-            i have a directory on my computer where I keep my ssh keys; give it a name that lets you remember what is for e.g. 'digital_ocean_public_key'
-            your public key will be uploaded to the VM when you create it.
+- unzip putty.exe and puttygen.exe
+- open puttygen and press generate
+- move mouse around in blank area till key generation is complete
+- the passphrase is not required but adds an additional layer of security
+- save public key
+-- i have a directory on my computer where I keep my ssh keys; give it a name that lets you remember what is for e.g. 'digital_ocean_public_key'
+Your public key will be uploaded to the VM when you create it.
         save private key
             e.g. 'digital_ocean_private_key.ppk'
             This private key will only work for the machine you are working on. It can not be copied to another computer and used there. You will generate a new key for each computer you want to log onto a machine with.
