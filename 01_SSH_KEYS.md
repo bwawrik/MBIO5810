@@ -7,29 +7,28 @@
 - move mouse around in blank area till key generation is complete
 - the passphrase is not required but adds an additional layer of security
 - save public key
--- i have a directory on my computer where I keep my ssh keys; give it a name that lets you remember what is for e.g. 'digital_ocean_public_key'
-Your public key will be uploaded to the VM when you create it.
-        save private key
-            e.g. 'digital_ocean_private_key.ppk'
-            This private key will only work for the machine you are working on. It can not be copied to another computer and used there. You will generate a new key for each computer you want to log onto a machine with.
-            NEVER share your private key, email it, or store it in the cloud e.g. in dropbox.
-### ON MAC
-        open iTERM
-        type 'cd /Users/[username]/.ssh'
-        type 'ssh-keygen'
-        name your key (e.g. 'digital_ocean')
+- i have a directory on my computer where I keep my ssh keys; give it a name that lets you remember what is for e.g. 'digital_ocean_public_key'
+- Your public key will be uploaded to the VM when you create it.
+- save private key (e.g. 'digital_ocean_private_key.ppk'). This private key will only work for the machine you are working on. It can not be copied to another computer and used there. You will generate a new key for each computer you want to log onto a machine with.
 
+NEVER share your private key, email it, or store it in the cloud e.g. in dropbox.
+
+### ON MAC
+- open iTERM
+- type 'cd /Users/[username]/.ssh'
+- type 'ssh-keygen'
+- name your key (e.g. 'digital_ocean')
 
 ## Setting up the server:
 
-    Go to DigitalOcean.com and set up an account.
-        https://cloud.digitalocean.com
-    Add $5 to your account by using the paypal option to charge your credit card
-    Add $5 to your account using the promo code 'EMAIL5AUG!' (this will only work if you first make a $5 payment)
-    You should now have $10 in your account.  The smallest instance is 0.7c per hour, so you can happily hack for >1400 hours
-    To start your instance go to 'Droplets'
-        select 'create droplet'
-            Name your droplet
+- Go to DigitalOcean.com and set up an account.
+- https://cloud.digitalocean.com
+- Add $5 to your account by using the paypal option to charge your credit card
+- Add $5 to your account using the promo code 'EMAIL5AUG!' (this will only work if you first make a $5 payment)
+- You should now have $10 in your account.  The smallest instance is 0.7c per hour, so you can happily hack for >1400 hours
+- To start your instance go to 'Droplets'
+        - select 'create droplet'
+          Name your droplet
             select the smallest size i.e. 0.007 per hour (512 MB / 1 CPU 20 GB SSD Disk 1000 GB Transfer)
             select region 'New York'
             under image select 'CENTOS 7X64'
