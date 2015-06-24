@@ -1,7 +1,7 @@
 ## SSH KEYS
 
 ### ON PC
-- download Putty (http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip)
+- download Putty (http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip). 
 - unzip putty.exe and puttygen.exe
 - open puttygen and press generate
 - move mouse around in blank area till key generation is complete
