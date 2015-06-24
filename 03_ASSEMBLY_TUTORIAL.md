@@ -30,6 +30,10 @@ cd /data
 wget https://github.com/bwawrik/MBIO5810/blob/master/assembly_data/232_R1_40k.fastq.gz
 wget https://github.com/bwawrik/MBIO5810/blob/master/assembly_data/232_R2_40k.fastq.gz
 ```
+- unzip the data files
+```sh
+gunzip *.gz
+```
 
 note: These two files represent forward and reverse reads of MySeq genome sequencing run. They are partial files to allow the assembly to complete in a reasonable amount of time. Together the files contain about 5*10^6 bp of sequence, which is about 1x coverage on the genome of SPR.
 
@@ -57,7 +61,12 @@ velveth velvet/ 31 -shortPaired -fastq -separate 232_R1_40k.fastq 232_R2_40k.fas
 velvetg velvet/
 ```
 
-- Create the N50.pl file by starting nano and pasting the script in from the evernote. Then assess the N50 stats on both assemblies.
+- Download the N50 perl script
+ 
+```sh
+```
+
+- Then assess the N50 stats on both assemblies.
 
 ```sh
 perl N50.pl velvet/contigs.fa
