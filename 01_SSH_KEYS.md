@@ -1,6 +1,6 @@
 ## SSH KEYS
 
-   ### ON PC
+### ON PC
         download Putty (http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip)
         unzip putty.exe and puttygen.exe
         open puttygen and press generate
@@ -13,7 +13,7 @@
             e.g. 'digital_ocean_private_key.ppk'
             This private key will only work for the machine you are working on. It can not be copied to another computer and used there. You will generate a new key for each computer you want to log onto a machine with.
             NEVER share your private key, email it, or store it in the cloud e.g. in dropbox.
-   ### ON MAC
+### ON MAC
         open iTERM
         type 'cd /Users/[username]/.ssh'
         type 'ssh-keygen'
@@ -54,7 +54,6 @@
 ## Logging onto your VM
 
 ### ON PC
- 
 
     open putty
     paste IP address into 'Host Name' box
