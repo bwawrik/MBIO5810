@@ -1,10 +1,9 @@
 ## Downloading and launching a docker file
 
 - Create a droplet called 'bioinformatics'.
+- Log onto your digial ocean droplet and at the command prompt (root@bioinformatics:~# ) type:
 
-I then log onto my digial ocean droplet and at the command prompt (root@bioinformatics:~# ) I type:
-
-root@bioinformatics:~# mkdir /data
+"root@bioinformatics:~# mkdir /data"
 
 This creates a data folder in your droplet.  This is the folder we will mount into our docker.  This is needed so you can retrieve your analysis results after you are done.
 
