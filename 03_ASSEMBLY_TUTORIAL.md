@@ -64,6 +64,7 @@ velvetg velvet/
 - Download the N50 perl script
  
 ```sh
+https://github.com/bwawrik/MBIO5810/blob/master/perl_scripts/N50.pl
 ```
 
 - Then assess the N50 stats on both assemblies.
