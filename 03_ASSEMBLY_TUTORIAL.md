@@ -20,7 +20,7 @@ docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
 
 - Change your directory to /data
 
-```sh
+```sh 
 cd /data
 ```
 
