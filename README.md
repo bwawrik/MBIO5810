@@ -8,6 +8,7 @@ This repository contains the following current tutorials:
  :--- | :---------- |
 | [Intro to Linux](00_INTRO_TO_LINUX.md) | Gentle introduction for Linux Beginners |
 | [Digital Ocean VMs and SSH Keys](01_SSH_KEYS.md) | Learn how to create and secure a cheap VM in the cloud |
+| [Docker](02_Pulling_a_Docker_Repo.md) | Downloading and launching a docker file |
 
 ### Schedule
 In the summer of 2015, we'll meet Friday mornings in the 310 GLC.
