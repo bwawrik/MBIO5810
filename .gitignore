@@ -1,0 +1,22 @@
+# RStudio and History files
+.Rproj.user/
+.Rproj.user
+.Rhistory
+.RData
+
+# The devtools zip is downloaded when the package is updating itself 
+devtools.zip
+
+# Protected Information; see cubuspl42's answer in http://stackoverflow.com/questions/2415873/exceptions-in-gitignore
+unshared_material/*
+data_unshared/*
+
+# Keep the README in the unshared directories
+!data_unshared/README.md
+!data_unshared/contents.md
+
+#Image Thumbnails on Windows
+Thumbs.db
+
+#Ignore README.html files, because the .md version are converted automatically by GitHub
+README.html
