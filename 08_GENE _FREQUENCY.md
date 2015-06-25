@@ -79,13 +79,16 @@ fgrep -o ">" T3dsrAhits_FR.fas | wc -l
 - Lets make a log scale bar graph of the percent frequency of hits
 
 ```sh
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/bargraph_redgreen_scale.r
+wget https://github.com/bwawrik/MBIO5810/raw/master/R_scripts/bargraph_redgreen_scale.r
 
 Rscript bargraph_redgreen_scale.r $(calc 100*$(fgrep -o ">" T3dsrAhits_FR.fas | wc -l)/$(fgrep -o "+" TORDIS3_reverse_paired.50k.fq | wc -l)*2) out.png
+```
 
-*note: the 'calc' function is coded into my .bashrc in the docker. It is not part of linux and looks like this:
+The 'calc' function is coded into my .bashrc in the docker. It is not part of linux and looks like this:
+```sh
 calc () {
     bc -l <<< "$@"
 }
+```
 
-Are drsA genes abundant in this sample ? 
+#### Are drsA genes abundant in this sample ? 
