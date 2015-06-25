@@ -11,7 +11,7 @@ This repository contains the following current tutorials:
 | [Docker](02_PULLING_A_DOCKER_REPO.md) | Downloading and launching a docker file |
 | [Assembly](03_ASSEMBLY_TUTORIAL.md) | Basic genome assembly tutorial |
 | [Gene Prediction](04_GENE_PREDICTION.md) | Predicting ORFs from metagenome assemblies |
-
+| [16S Read Extraction](05_16S_READS_FROM_METAGENOME.md) | Identify 16S containing reads in metagenome |
 
 ### Schedule
 In the summer of 2015, we'll meet Friday mornings in the 310 GLC.
