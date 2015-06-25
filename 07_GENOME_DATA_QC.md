@@ -59,34 +59,42 @@ cat  fastqc_before/232_R1_40k_fastqc/fastqc_data.txt fastqc_before/232_R1_40k_fa
 - For the sample data, you can download the .conf file here, if you are having trouble:
 
 ```sh
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/cutadapt.conf
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/cutadapt.conf
 ```sh
 
-Now trim your adapters off your data
+- Trim your adapters off your data
+
+```sh
 cutadapt $(<cutadapt.conf) 232_R1_40k.fastq > 232_R1_40k.cutadapt.fastq
 cutadapt $(<cutadapt.conf) 232_R2_40k.fastq > 232_R2_40k.cutadapt.fastq
+```
 
+- Quality trim your data to a Q-score of 30
 
-The next step is to quality trim your data to a Q-score of 30
-
+```sh
 read_fastq -e base_33 -i 232_R1_40k.cutadapt.fastq | trim_seq -m 30 | write_fastq -o 232_R1_40k.cutadapt.q30.fastq -x
 read_fastq -e base_33 -i 232_R2_40k.cutadapt.fastq | trim_seq -m 30 | write_fastq -o 232_R2_40k.cutadapt.q30.fastq -x
+```
 
-Occasionally the MySeq will have some poly-A artifacts. I'm not sure why, but I think they are created by read-through. Lets remove them.
+- Occasionally the MySeq will have some poly-A artifacts. I'm not sure why, but I think they are created by read-through. Lets remove them.
 
+```sh
 homerTools trim -3 AAAAAA 232_R1_40k.cutadapt.q30.fastq
 homerTools trim -3 AAAAAA 232_R2_40k.cutadapt.q30.fastq
+```
 
-One last step is to extract the paired reads only.  Experience tells me that unpaired reads are poor quality. We'll trim to minimum length of 50 bp and crop to max length of 250 bp. Remember to crop to the appropriate length.
+- The last step is to extract the paired reads only.  Experience tells me that unpaired reads are poor quality. We'll trim to minimum length of 50 bp and crop to max length of 250 bp. Remember to crop to the appropriate length if your reads are different from the Illumina PE250 reads used in this tutorial.
 
+```sh
 trimmomatic PE -phred33 232_R1_40k.cutadapt.q30.fastq.trimmed 232_R2_40k.cutadapt.q30.fastq.trimmed 232_R1_40k.qc.paired.fastq 232_R1_40k.qc.unpaired.fastq 232_R2_40k.qc.paired.fastq 232_R2_40k.qc.unpaired.fastq MINLEN:50 CROP:250
+```
 
-Rerun your fastqc analysis
+- Rerun your fastqc analysis
 
-
+```sh
 mkdir fastqc_after
-
 fastqc 232_R2_40k.qc.paired.fastq -o fastqc_after/
 fastqc 232_R1_40k.qc.paired.fastq -o fastqc_after/
+```
 
-Use a web-browser to inspect the before and after files
+- Use a web-browser to inspect the before and after files (you many have to retrieve them first via SCP).
