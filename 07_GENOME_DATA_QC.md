@@ -1,46 +1,66 @@
-## QC OF GENOME AND METAGENOME DATA BEFORE DOWNSTREAM ANALYSIS (e.g. assemlby or gene prediction)
+### QC OF GENOME AND METAGENOME DATA BEFORE DOWNSTREAM ANALYSIS (e.g. assemlby or gene prediction)
 
 - Download the docker bwawrik/bioinformatics:latest
 
+```sh
 docker pull bwawrik/bioinformatics:latest
+```
 
-Make a data directory
+- Make a data directory and mount it into the docker 
 
+```sh
 mkdir /data
-
-Start the docker and mount /data
-
 docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
 cd /data
+```
 
-Download the sample genome data set wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/232_R1_40k.fastq wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/232_R2_40k.fastq
+- Download the sample genome data set 
+
+```sh
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/232_R1_40k.fastq.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/232_R2_40k.fastq.gz
+```
 
 Make an analysis directory
 
+```sh
 mkdir fastqc_before
+```
 
-Now run fastQC on your pre-trimming data and unzip the results
+- Now run fastQC on your pre-trimming data and unzip the results
 
+```sh
 fastqc 232_R1_40k.fastq -o fastqc_before/
 fastqc 232_R2_40k.fastq -o fastqc_before/
 cd fastqc_before
 unzip 232_R1_40k_fastqc.zip
-
 unzip 232_R2_40k_fastqc.zip
+```
 
+- You will need to create a configuration file.  The information you need is in the report files under 'overrepresented sequences'. If you can use a web browser, open the report html file and cut and paste into nano. If you can't catenate the output file and use nano to edit
 
-You will need to create a configuration file.  The information you need is in the report files under 'overrepresented sequences'.
-If you can use a web browser, open the report html file and cut and paste into nano. If you can't catenate the output file and use nano to edit
-
+```sh
 cat  fastqc_before/232_R1_40k_fastqc/fastqc_data.txt fastqc_before/232_R1_40k_fastqc/fastqc_data.txt > cutadapt.conf
+```
 
-Then open the file with nano and use 'Ctrl K' to delete all lines that do not contain the overrepresented sequence information. You will then need to manually edit the file to addd the -e -q and -n paramerts.  Your final file should look like this:
+- Open the file with nano and use 'Ctrl K' to delete all lines that do not contain the overrepresented sequence information. You will then need to manually edit the file to addd the -e -q and -n paramerts.  Your final file should look like this:
 
--b GATCGGAAGAGCACACGTCTGAACTCCAGTCACGTCCGCACATCTCGTAT -b AGATCGGAAGAGCACACGTCTGAACTCCAGTCACGTCCGCACATCTCGTA -b GATCGGAAGAGCACACGTCTGAACTCCAGTCACGTCCGCACATATCGTAT -b AGATCGGAAGAGCACACGTCTGAACTCCAGTCACGTCCGCACATATCGTA -b AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCC -e 0.15 -q 30 -n 3
+```sh
+-b GATCGGAAGAGCACACGTCTGAACTCCAGTCACGTCCGCACATCTCGTAT
+-b AGATCGGAAGAGCACACGTCTGAACTCCAGTCACGTCCGCACATCTCGTA
+-b GATCGGAAGAGCACACGTCTGAACTCCAGTCACGTCCGCACATATCGTAT
+-b AGATCGGAAGAGCACACGTCTGAACTCCAGTCACGTCCGCACATATCGTA
+-b AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCC
+-e 0.15 
+-q 30
+-n 3
+```
 
-For the sample data, you can download the .conf file here, if you are having trouble:
+- For the sample data, you can download the .conf file here, if you are having trouble:
 
+```sh
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/cutadapt.conf
+```sh
 
 Now trim your adapters off your data
 cutadapt $(<cutadapt.conf) 232_R1_40k.fastq > 232_R1_40k.cutadapt.fastq
