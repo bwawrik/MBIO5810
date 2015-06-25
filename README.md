@@ -13,7 +13,7 @@ This repository contains the following current tutorials:
 | [16S Read Extraction](05_16S_READS_FROM_METAGENOME.md) | Identify 16S containing reads in metagenome |
 | [Basic Qiime Tutorial](06_BASIC_QIIME_TUTORIAL.md) | Generate Phylogenetic Breakdown from 16S Amlicon data |
 | [QC of Meta/Genome Data](07_GENOME_DATA_QC.md ) | QC filter Genome and Metagenome Data |
-| []() | Determine Frequence of Functional Gene in Metagenome |
+| [Functional Gene Detection](08_GENE _FREQUENCY.md) | Determine Frequence of Functional Gene in Metagenome |
 | []() | Classify 16S reads in Metagenome |
 | []() | Creating your own Docker files |
 | []() | KEGG annoation of metagenome reads |
