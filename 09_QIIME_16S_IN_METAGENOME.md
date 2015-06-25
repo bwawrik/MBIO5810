@@ -4,35 +4,49 @@
 
 - Download the docker bwawrik/bioinformatics:latest
 
+```sh
 docker pull bwawrik/bioinformatics:latest
+```
 
-Make a data directory
-*note: if you are working locally on a mac using boot2docker you will need to work in ~/data. Please replace where appropriate
+- Make a data directory. if you are working locally on a mac using boot2docker you will need to work in ~/data. Please replace where appropriate
 
+```sh
 mkdir /data
 (* on  your mac: mkdir ~/data)
+```
 
-Start the docker and mount /data
+- Start the docker and mount /data
 
+```sh
 docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
 (* locally on mac: docker run -t -i -v ~/data:/data bwawrik/bioinformatics:latest)
+```
 
  
-Install usearch8.0.1517
-*note: the following will not work with older usearch versions
+- Install usearch8.0.1517 (the following will not work with older usearch versions)
 
+```sh
 mkdir -p /opt/local/software/usearch
 cd /opt/local/software/usearch
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/usearch8.0.1517_i86linux32
-`chmod 777 *
+chmod 777 *
 cd /usr/local/bin
 ln -s /opt/local/software/usearch/usearch8.0.1517_i86linux32 ./usearch8
+```
 
-Install the Silva111 database
+- Install the Silva111 database
  
+```sh
 mkdir -p /data/DATABASES/16S
-(* on  your mac: mkdir -p ~/data/DATABASES/16S)cd /data/DATABASES/16S
-(* on  your mac: cd ~/data/DATABASES/16S)wget http://www.arb-silva.de/fileadmin/silva_databases/qiime/Silva_111_release.tgztar -xvf Silva_111_release.tgzcd Silva_111_post/rep_set_alignedgunzip *cd ..cd rep_setgunzip *
+(* on  your mac: mkdir -p ~/data/DATABASES/16S)
+cd /data/DATABASES/16S
+(* on  your mac: cd ~/data/DATABASES/16S)
+wget http://www.arb-silva.de/fileadmin/silva_databases/qiime/Silva_111_release.tgz
+tar -xvf Silva_111_release.tgz
+cd Silva_111_post/rep_set_aligned
+gunzip *cd ..cd rep_set
+gunzip *
+```
  
 Now change to your data directory and make an output directory
 
