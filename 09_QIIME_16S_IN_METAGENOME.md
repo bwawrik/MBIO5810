@@ -44,7 +44,9 @@ cd /data/DATABASES/16S
 wget http://www.arb-silva.de/fileadmin/silva_databases/qiime/Silva_111_release.tgz
 tar -xvf Silva_111_release.tgz
 cd Silva_111_post/rep_set_aligned
-gunzip *cd ..cd rep_set
+gunzip *
+cd ..
+cd rep_set
 gunzip *
 ```
  
@@ -70,41 +72,54 @@ read_fastq -i VIGDIS3_reverse_paired.50K.fq | write_fasta -o VIGDIS3_reverse_pai
 read_fastq -i VIGDIS3_forward_paired.50K.fq | write_fasta -o VIGDIS3_forward_paired.50K.fasta -x
 ```
 
-- Download the pre-compiled udb database:
+- prepare 16S database for searching by creating a UDB datase as follows
 
-```sh
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/SSURef_111_candidate_db.udb
+```sh 
+cd /data/DATABASES/16S/Silva_111_post/rep_set
+usearch -makeudb_usearch 90_Silva_111_rep_set.fasta -output SSURef_111_candidate_db.udb
 ```
 
-Now run your usearch command
+- Now run your usearch command
 
-usearch8 -usearch_global VIGDIS3_forward_paired.50K.fasta -db SSURef_111_candidate_db.udb -qsegout f_ssu_hits.fasta -blast6out f_ssu_hits.txt -strand both -id 0.7 -maxhits 1
+```sh
+cd /data
 
-usearch8 -usearch_global VIGDIS3_reverse_paired.50K.fasta -db SSURef_111_candidate_db.udb -qsegout r_ssu_hits.fasta -blast6out r_ssu_hits.txt -strand both -id 0.7 -maxhits 1
+usearch8 -usearch_global VIGDIS3_forward_paired.50K.fasta -db /data/DATABASES/16S/Silva_111_post/rep_set/SSURef_111_candidate_db.udb -qsegout f_ssu_hits.fasta -blast6out f_ssu_hits.txt -strand both -id 0.7 -maxhits 1
 
-*Note:  outputs a fasta file containing only the aligned region of each query and a table of the search match criteria
+usearch8 -usearch_global VIGDIS3_reverse_paired.50K.fasta -db /data/DATABASES/16S/Silva_111_post/rep_set/SSURef_111_candidate_db.udb -qsegout r_ssu_hits.fasta -blast6out r_ssu_hits.txt -strand both -id 0.7 -maxhits 1
+```
+These commands output fasta files containing only the aligned region of each query and a table of the search match criteria
 
-Reformat the resulting fasta files to avoid seqID duplication errors
+- Reformat the resulting fasta files to avoid seqID duplication errors
 
+```sh
 sed -i 's/>/>f_/g' f_ssu_hits.fasta
 sed -i 's/>/>r_/g' r_ssu_hits.fasta
+```
 
-Catentating the forward and reverse ssu query segments into a single file
+- Catentating the forward and reverse ssu query segments into a single file
 
+```sh
 cat f_ssu_hits.fasta r_ssu_hits.fasta > ssu_hits.fasta
+```
 
-Removing any extraneous line returns that USEARCH may have added within sequences using Biopieces
+- Removing any extraneous line returns that USEARCH may have added within sequences using Biopieces
 
+```sh
 read_fasta -i ssu_hits.fasta | write_fasta -o ssu_hits_corrected.fasta -x
+```
+- Exit the qiime docker
+```sh
+exit
+```
  
-Download the docker bwawrik/qiime:latest
+- Download the docker bwawrik/qiime:latest and launch it interactively
 
+```sh
 docker pull bwawrik/qiime:latest
-
-Start the docker and mount /data
-
 docker run -t -i -v /data:/data bwawrik/qiime:latest
 (* locally on mac: docker run -t -i -v ~/data:/data bwawrik/qiime:latest)
+```
  
 You will also need a barcodes file, the add_tag.pl script, and a script to remove duplicates
 
