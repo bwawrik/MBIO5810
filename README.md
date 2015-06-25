@@ -14,7 +14,7 @@ This repository contains the following current tutorials:
 | [Basic Qiime Tutorial](06_BASIC_QIIME_TUTORIAL.md) | Generate Phylogenetic Breakdown from 16S Amlicon data |
 | [QC of Meta/Genome Data](07_GENOME_DATA_QC.md ) | QC filter Genome and Metagenome Data |
 | [Functional Gene Detection](08_GENE _FREQUENCY.md) | Determine Frequence of Functional Gene in Metagenome |
-| []() | Classify 16S reads in Metagenome |
+| [16S Analysis of Metagenome](09_QIIME_16S_IN_METAGENOME.md) | Classify 16S reads in Metagenome |
 | []() | Creating your own Docker files |
 | []() | KEGG annoation of metagenome reads |
 
