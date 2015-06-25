@@ -48,16 +48,20 @@ gunzip *cd ..cd rep_set
 gunzip *
 ```
  
-Now change to your data directory and make an output directory
+- Now change to your data directory and make an output directory
 
+```sh
 cd /data
 (* on  your mac: cd ~/data)
+```
  
-Dowload the 16S database, read files, and the necessary perl scripts.
+- Dowload the 16S database, read files, and the necessary perl scripts.
 
+```sh
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/VIGDIS3_forward_paired.50K.fq
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/VIGDIS3_reverse_paired.50K.fq
 gunzip *
+```
  
 Convert fastq files to fasta
  
