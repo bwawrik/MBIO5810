@@ -31,8 +31,8 @@ docker images
 
 ```sh
 REPOSITORY           TAG                    IMAGE ID                CREATED            VIRTUAL SIZE
-bwawrik/qiime            latest                   c7b8ab1b04fc        12 days ago          5.935 GB
-centos                       latest                   fd44297e2ddb        3 weeks ago         215.47 MB
+bwawrik/qiime        latest                 c7b8ab1b04fc            12 days ago          5.935 GB
+centos               latest                 fd44297e2ddb            3 weeks ago         215.47 MB
 ```
 
 You should see an image tagged as REPOSITORY = 'centos'  and TAG = 'latest'.  The nomenclature for this repository is centos:latest. Alternatively, the repository can be identified with the IMAGE ID. In my case IMAGE ID = ' fd44297e2ddb'. This will be important further down.
@@ -112,7 +112,7 @@ docker ps -l
 - In my case, I got:
 
 ```sh
-CONTAINER ID  IMAGE           COMMAND        CREATED        STATUS        PORTS               NAMES
+CONTAINER ID  IMAGE           COMMAND        CREATED            STATUS        PORTS               NAMES
 206278e38cd6  centos:latest   "/bin/bash"    19 minutes ago     Exited                            mad_einstein
 ```
 
@@ -137,9 +137,9 @@ docker images
 
 ```sh
 REPOSITORY           TAG                    IMAGE ID                CREATED            VIRTUAL SIZE
-<none>                     <none>               1b9db728ff67          2 minutes ago       1.03 GB
-bwawrik/qiime            latest                   c7b8ab1b04fc        12 days ago          5.935 GB
-centos                       latest                   fd44297e2ddb        3 weeks ago         215.47 MB
+<none>               <none>                 1b9db728ff67            2 minutes ago      1.03 GB
+bwawrik/qiime        latest                 c7b8ab1b04fc            12 days ago        5.935 GB
+centos               latest                 fd44297e2ddb            3 weeks ago        215.47 MB
 ```
 
 - Tag your image with REPOSITORY and a TAG identifying the version'
@@ -163,10 +163,10 @@ You can re-list your images to see if it worked:
 Te new untagged image that appeared in my list.
 
 ```
-REPOSITORY           TAG                    IMAGE ID                CREATED            VIRTUAL SIZE
-bwawrik/gulpereel     version_1            1b9db728ff67          2 minutes ago       1.03 GB
-bwawrik/qiime            latest                   c7b8ab1b04fc        12 days ago          5.935 GB
-centos                       latest                   fd44297e2ddb        3 weeks ago         215.47 MB
+REPOSITORY           TAG                    IMAGE ID                CREATED             VIRTUAL SIZE
+bwawrik/gulpereel     version_1             1b9db728ff67            2 minutes ago       1.03 GB
+bwawrik/qiime         latest                c7b8ab1b04fc            12 days ago         5.935 GB
+centos                latest                fd44297e2ddb            3 weeks ago         215.47 MB
 ```
 
 There is only one thing left to do - push your new docker to your repository:
