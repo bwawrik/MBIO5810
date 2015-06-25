@@ -141,27 +141,34 @@ gunzip *
 
 - Download the parameters file needed for running the analysis using Silva
 
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/qiime_parameters_silva111.par
+```sh
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/qiime_parameters_silva111.par
+```
 
-Pick your OTUs
+- Pick your OTUs
 
+```sh
 pick_de_novo_otus.py -i processed_seqs/Split_Output/seqs.fna -o OTUs_silva -p qiime_parameters_silva111.par
+```
 
-Inspect the BIOM file
+- Inspect the BIOM file
 
+```sh
 biom summarize-table -i OTUs_silva/otu_table.biom 
-note: look at the number of sequences in each sample.  In the next command you need to set the '-e' parameter, which is the sampling depth for rarefaction.  'e' should not exceed the lowest number in the result form this command.
+``` 
 
-Run QIIME core diversity analysis
+Look at the number of sequences in each sample.  In the next command you need to set the '-e' parameter, which is the sampling depth for rarefaction.  'e' should not exceed the lowest number in the result form this command.
 
+- Run QIIME core diversity analysis
+
+```sh
 core_diversity_analyses.py -o cdout_silva/ -i  OTUs_silva/otu_table.biom -m GoM_Sept_Mapping.txt -t OTUs_silva/rep_set.tre -e 20
+```
 
-Retrieving your output
+- Retrieving your output after logging out of your VM. If you are using a PC, use an FTP program to retrieve your files.
 
-Log out of your droplet.
-
-# scp -r root@45.55.160.193:/data/cdout_silva/* ~/Desktop/
-
-If you are using a PC, use an FTP program to retrieve your files.
+```sh
+scp -r root@45.55.160.193:/data/cdout_silva/* ~/Desktop/
+```
 
 Which analysis is faster ? Which produces better results ? Why ?
