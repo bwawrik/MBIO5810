@@ -1,6 +1,6 @@
 ### Basic Assembly Tutorial
 
-- Start a droplet with at least 1GB of memory in Digital Ocean and ssh into it. Alternatively (and better) install and use boot2docker on your local machine.
+- Start a droplet with at least 1GB of memory in Digital Ocean and ssh into it. Alternatively (and better) install and use boot2docker on your local machine.  (See the previous tutorial about [creating and securing your own Digital Ocean droplet](./01_SSH_KEYS.md).)
 - Download the docker bwawrik/bioinformatics:latest
 
 ```sh
@@ -12,7 +12,7 @@ docker pull bwawrik/bioinformatics:latest
 mkdir /data
 ```
 
-- Start the docker and mount /data
+- Start the docker and mount /data. (See the previous tutorial about [Docker](02_PULLING_A_DOCKER_REPO.md)).
 
 ```sh
 docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
