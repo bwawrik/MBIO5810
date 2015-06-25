@@ -15,6 +15,9 @@ This repository contains the following current tutorials:
 | [Basic Qiime Tutorial](06_BASIC_QIIME_TUTORIAL.md) | Generate Phylogenetic Breakdown from 16S Amlicon data |
 | [QC of Meta/Genome Data](07_GENOME_DATA_QC.md ) | QC filter Genome and Metagenome Data |
 | []() |  |
+| []() |  |
+| []() |  |
+| []() |  |
 
 
 ### Schedule
