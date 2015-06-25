@@ -56,7 +56,7 @@ read_fastq -i TORDIS3_forward_paired.50k.fq | write_fasta -o TORDIS3_forward_pai
 - Search database with data files and
 
 ```sh
-usearch8 -usearch_global TORDIS3_reverse_paired.50K.fasta -db dsrA_database.udb -id 0.7 -strand both -mincols 50 -maxhits 1 -qsegout T3_dsrAhits_r.fas -blast6out T3dsrAhits_r.tab
+usearch8 -usearch_global TORDIS3_reverse_paired.50k.fasta -db dsrA_database.udb -id 0.7 -strand both -mincols 50 -maxhits 1 -qsegout T3_dsrAhits_r.fas -blast6out T3dsrAhits_r.tab
 
 usearch8 -usearch_global TORDIS3_forward_paired.50K.fasta -db dsrA_database.udb -id 0.7 -strand both -mincols 50 -maxhits 1 -qsegout T3_dsrAhits_f.fas -blast6out T3dsrAhits_f.tab
 ```
