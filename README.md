@@ -12,7 +12,8 @@ This repository contains the following current tutorials:
 | [Assembly](03_ASSEMBLY_TUTORIAL.md) | Basic genome assembly tutorial |
 | [Gene Prediction](04_GENE_PREDICTION.md) | Predicting ORFs from metagenome assemblies |
 | [16S Read Extraction](05_16S_READS_FROM_METAGENOME.md) | Identify 16S containing reads in metagenome |
-
+| [Basic Qiime Tutorial](06_BASIC_QIIME_TUTORIAL.md) | Generate Phylogenetic Breakdown from 16S Amlicon data |
+ 
 ### Schedule
 In the summer of 2015, we'll meet Friday mornings in the 310 GLC.
 
