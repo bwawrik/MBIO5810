@@ -27,7 +27,7 @@ cd /data
 - Download the sample data and unzip it. This file represents some of the contigs that were generated from a metagenome dataset. The complete assembly fasta file is much larger.  Only a subsample of contigs is included here to illustate the procedure.
 
 ```sh 
-wget https://github.com/bwawrik/MBIO5810/raw/master/assembly_data/pipeline_mg_contigs.fas.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/pipeline_mg_contigs.fas.gz
 gunzip *.gz
 ```
 
