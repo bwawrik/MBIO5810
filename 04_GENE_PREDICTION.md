@@ -27,7 +27,7 @@ cd /data
 - Download the sample data and unzip it. This file represents some of the contigs that were generated from a metagenome dataset. The complete assembly fasta file is much larger.  Only a subsample of contigs is included here to illustate the procedure.
 
 ```sh 
-wget https://github.com/bwawrik/MBIO5810/blob/master/assembly_data/pipeline_mg_contigs.fas.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/assembly_data/pipeline_mg_contigs.fas.gz
 gunzip *.gz
 ```
 
@@ -75,7 +75,8 @@ rm -rf Ftrain
 
 Which one produces longers ORFs ? Which produces more ORFs ? Which is better ? Why ? What would be a better way to assess the quality of ORF calling ?
 
-```sh 
+```sh
+wget https://github.com/bwawrik/MBIO5810/raw/master/perl_scripts/N50.pl
 perl N50.pl output/VigP03RayK31.FragGeneScan.ffn
 perl N50.pl output/VigP03RayK31.prodigal.orfs.fna
 ```
