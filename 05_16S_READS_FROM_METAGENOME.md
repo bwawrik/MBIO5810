@@ -1,4 +1,4 @@
-### Tutorial on extracting 16S reads from a metagenome
+### Extracting 16S reads from a metagenome
 
 - Start by launching a VM wither as a droplet in Digital Ocean or locally via boot2docker and and ssh into it.
 - Download the docker bwawrik/bioinformatics:latest
