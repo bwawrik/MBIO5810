@@ -6,73 +6,90 @@
 ```sh 
 docker pull bwawrik/bioinformatics:latest
 ```
-Make a data directory
+- Make a data directory
 
 ```sh 
 mkdir /data
 ```
 
-Start the docker and mount /data
+- Start the docker and mount /data
 
 ```sh 
 docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
 ```
 
-Change your directory to /data
+- Change your directory to /data
 
 ```sh 
 cd /data
 ```
 
-Download the example metagenome data and assembly
+- Download the sample data and unzip it. This file represents some of the contigs that were generated from a metagenome dataset. The complete assembly fasta file is much larger.  Only a subsample of contigs is included here to illustate the procedure.
+
 ```sh 
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/VigP03RayK31Contigs.fasta
+wget https://github.com/bwawrik/MBIO5810/blob/master/assembly_data/pipeline_mg_contigs.fas.gz
+gunzip *.gz
 ```
 
-gunzip *
+- Now make an output directory
 
-Now make an output directory
-
+```sh 
 mkdir /data/output
+```
 
-Predict ORFs as nucleotide (fna) and amio acid (faa) sequences using Prodigal
+### Prodigal
 
-prodigal -d output/temp.orfs.fna -a output/temp.orfs.faa -i VigP03RayK31Contigs.fasta -m -o output/tempt.txt -p meta -q
+- Predict ORFs as nucleotide (fna) and amio acid (faa) sequences
 
-cut -f1 -d " " output/temp.orfs.fna > output/VigP03RayK31.prodigal.orfs.fna
-
-cut -f1 -d " " output/temp.orfs.faa > output/VigP03RayK31.prodigal.orfs.faa
-
+```sh 
+prodigal -d output/temp.orfs.fna -a output/temp.orfs.faa -i pipeline_mg_contigs.fas -m -o output/tempt.txt -p meta -q
+cut -f1 -d " " output/temp.orfs.fna > output/prodigal.orfs.fna
+cut -f1 -d " " output/temp.orfs.faa > output/prodigal.orfs.faa
 rm -f output/temp*
+```
+
 You can do this separately by just call the ' -d output/temp.orfs.fna' or '-a output/temp.orfs.faa' flags.  The last command removes the temporary files.
 
+### FragGeneScan
 
-Lets predict ORFs using FragGeneScan
+- First you need to copy the model files to the local directory. (This is a workaround; I'm not sure why it doesn't work without copying these files; sorry !)
 
-First you need to copy the model files to the local directory. (This is a workaround; I'm not sure why it doesn't work without copying these files; sorry !)
-
+```sh 
 mkdir Ftrain
 cp /opt/local/software/FragGeneScan1.19/train/* Ftrain
+```
 
-Now lets predict the RFs
+- Now lets predict the ORFs
 
+```sh 
 FragGene_Scan -s VigP03RayK31Contigs.fasta -o output/VigP03RayK31.FragGeneScan -w 1 -t complete
+```
 
-Clean up
+- Clean up
 
+```sh 
 rm -rf Ftrain
+```
 
-Now run the N50 script on both results.  Which one produces longers ORFs ? Which produces more ORFs ? Which is better ? Why ? What would be a better way to assess the quality of ORF calling ?
+- Run the N50.pl script on both results (see assembly tutorial).  
 
+Which one produces longers ORFs ? Which produces more ORFs ? Which is better ? Why ? What would be a better way to assess the quality of ORF calling ?
+
+```sh 
 perl N50.pl output/VigP03RayK31.FragGeneScan.ffn
 perl N50.pl output/VigP03RayK31.prodigal.orfs.fna
+```
 
-Retrieving your output
+### Retrieving your output
 
-Log out of your droplet.  Then use secure copy (scp) to retrieve your files to your local drive. In this example, I used a droplet with the IP 45.55.160.193 and retrieved the files to my desktop on my macbook.  Make sure you replace this with the IP for your droplet. 
+- If you are using boot2docker or a local machine, there is no need for this step.
+- Log out of your VM or droplet.  
+- Then use secure copy (scp) to retrieve your files to your local drive. In this example, I used a droplet with the IP 45.55.160.193 and retrieved the files to my desktop on my macbook.  Make sure you replace this with the IP for your droplet. 
 
-# scp root@45.55.160.193:/data/output/* ~/Desktop/
+```sh 
+scp root@45.55.160.193:/data/output/* ~/Desktop/
+```
 
-If you are using a PC, use an FTP program to retrieve your files.
+- If you are using a PC, use an FTP program to retrieve your files.
 
 
