@@ -41,15 +41,8 @@ Retrieving your data
  
 
 wget http://mgmic.oscer.ou.edu/sequence_data/KoGenes
-
- 
-
-wget http://mgmic.oscer.ou.edu/sequence_data/ ko_pep.fasta
-
- 
-
+wget http://mgmic.oscer.ou.edu/sequence_data/ko_pep.fasta
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/VIGDIS3_forward_paired.50K.fasta
-
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/VIGDIS3_reverse_paired.50K.fasta
 
  
