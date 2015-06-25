@@ -108,7 +108,9 @@ cat f_ssu_hits.fasta r_ssu_hits.fasta > ssu_hits.fasta
 ```sh
 read_fasta -i ssu_hits.fasta | write_fasta -o ssu_hits_corrected.fasta -x
 ```
+
 - Exit the qiime docker
+
 ```sh
 exit
 ```
@@ -121,13 +123,15 @@ docker run -t -i -v /data:/data bwawrik/qiime:latest
 (* locally on mac: docker run -t -i -v ~/data:/data bwawrik/qiime:latest)
 ```
  
-You will also need a barcodes file, the add_tag.pl script, and a script to remove duplicates
+- You will also need a barcodes file, the add_tag.pl script, and a script to remove duplicates
 
+```sh
 cd data
 (* on  your mac: cd ~/data)
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/barcodes.txt
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/add_tag.pl
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/qiime_default.par
+```
 
 Then add a barcode from the barcodes.txt file.  Lets use the third one in the list.
 
