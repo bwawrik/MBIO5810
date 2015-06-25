@@ -27,8 +27,8 @@ cd /data
 - Download the sample genome data set
 
 ```sh
-wget https://github.com/bwawrik/MBIO5810/raw/master/assembly_data/232_R1_40k.fastq.gz
-wget https://github.com/bwawrik/MBIO5810/raw/master/assembly_data/232_R2_40k.fastq.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/232_R1_40k.fastq.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/232_R2_40k.fastq.gz
 ```
 - unzip the data files
 ```sh
