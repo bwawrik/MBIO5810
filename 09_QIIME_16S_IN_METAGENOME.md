@@ -128,9 +128,9 @@ docker run -t -i -v /data:/data bwawrik/qiime:latest
 ```sh
 cd data
 (* on  your mac: cd ~/data)
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/barcodes.txt
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/add_tag.pl
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/qiime_default.par
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/barcodes.txt
+wget https://github.com/bwawrik/MBIO5810/raw/master/perl_scripts/add_tag.pl
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/qiime_default.par
 ```
 
 Then add a barcode from the barcodes.txt file.  Lets use the third one in the list.
