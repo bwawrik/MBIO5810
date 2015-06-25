@@ -27,8 +27,8 @@ cd /data
 - Download the sample genome data set
 
 ```sh
-wget https://github.com/bwawrik/MBIO5810/blob/master/assembly_data/232_R1_40k.fastq.gz
-wget https://github.com/bwawrik/MBIO5810/blob/master/assembly_data/232_R2_40k.fastq.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/assembly_data/232_R1_40k.fastq.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/assembly_data/232_R2_40k.fastq.gz
 ```
 - unzip the data files
 ```sh
@@ -64,7 +64,7 @@ velvetg velvet/
 - Download the N50 perl script
  
 ```sh
-wget https://github.com/bwawrik/MBIO5810/blob/master/perl_scripts/N50.pl
+wget https://github.com/bwawrik/MBIO5810/raw/master/perl_scripts/N50.pl
 ```
 
 - Then assess the N50 stats on both assemblies.
