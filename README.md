@@ -1,4 +1,4 @@
-## Welcome to the Bioinformatics Breakfast Club (MBIO5810)
+## OU MPBIO Bioinformatics Breakfast Club (MBIO5810)
 
 ### Table of Contents
 This repository contains the following current tutorials:
