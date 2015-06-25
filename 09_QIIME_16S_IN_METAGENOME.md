@@ -58,20 +58,23 @@ cd /data
 - Dowload the 16S database, read files, and the necessary perl scripts.
 
 ```sh
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/VIGDIS3_forward_paired.50K.fq
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/VIGDIS3_reverse_paired.50K.fq
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/VIGDIS3_forward_paired.50K.fq.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/VIGDIS3_reverse_paired.50K.fq.gz
 gunzip *
 ```
  
-Convert fastq files to fasta
+- Convert fastq files to fasta
  
+```sh
 read_fastq -i VIGDIS3_reverse_paired.50K.fq | write_fasta -o VIGDIS3_reverse_paired.50K.fasta -x
 read_fastq -i VIGDIS3_forward_paired.50K.fq | write_fasta -o VIGDIS3_forward_paired.50K.fasta -x
+```
 
+- Download the pre-compiled udb database:
 
-Download the pre-compiled udb database:
- 
+```sh
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/SSURef_111_candidate_db.udb
+```
 
 Now run your usearch command
 
