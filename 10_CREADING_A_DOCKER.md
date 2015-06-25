@@ -1,15 +1,14 @@
 ### HOW TO MAKE YOUR OWN DOCKER REPOSITORY
 
-This tutorial will walk you through making a simple docker that allows you to assemble with Ray and predict ORFs with Prodigal as done in the prior tutorials.
+This tutorial will walk you through making a simple docker that allows you to assemble with Ray and predict ORFs with Prodigal as done in the prior tutorials. Before you can do this, you will need to visit the Docker website and create an account (if you don't have one already).
 
-- First, you will need to visit the Docker website and create an account (if you don't have one already)
-   
-
-    Go to www.docker.com
-    Enter a login name, email address, and password
-    Go do your email and verify account creation
-    Once you have verified your account go to 'login' and enter your credentials
-        https://hub.docker.com/account/login/
+```sh
+- Go to www.docker.com
+- Enter a login name, email address, and password 
+- Go do your email and verify account creation
+- Once you have verified your account go to 'login' and enter your credentials
+- https://hub.docker.com/account/login/
+```
 
 
 Create a repository by clicking the blue '+ Add Repository \/' Button on the right hand side of the screen. If you can't see the button, make sure you have selected 'Summary' on the left had side under your login ID.
