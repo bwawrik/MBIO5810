@@ -1,6 +1,5 @@
-Welcome to the Bioinformatics Breakfast Club (MBIO5810)
+## Welcome to the Bioinformatics Breakfast Club (MBIO5810)
 ==================================
-
 ### Table of Contents
 This repository contains the following current tutorials:
 
