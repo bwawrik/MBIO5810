@@ -10,6 +10,8 @@ This repository contains the following current tutorials:
 | [Digital Ocean VMs and SSH Keys](01_SSH_KEYS.md) | Learn how to create and secure a cheap VM in the cloud |
 | [Docker](02_PULLING_A_DOCKER_REPO.md) | Downloading and launching a docker file |
 | [Assembly](03_ASSEMBLY_TUTORIAL.md) | Basic genome assembly tutorial |
+| [Gene Prediction](04_GENE_PREDICTION.md) | Predicting ORFs from metagenome assemblies |
+
 
 ### Schedule
 In the summer of 2015, we'll meet Friday mornings in the 310 GLC.
