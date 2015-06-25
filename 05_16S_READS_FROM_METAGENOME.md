@@ -1,20 +1,22 @@
 ### Tutorial on extracting 16S reads from a metagenome
 
-Start a droplet with at least 1GB of memory in Digital Ocean and ssh into it.
-Download the docker bwawrik/bioinformatics:latest
+- Start by launching a VM wither as a droplet in Digital Ocean or locally via boot2docker and and ssh into it.
+- Download the docker bwawrik/bioinformatics:latest
 
+```sh 
 docker pull bwawrik/biorinformatics:latest
+```
 
-Make a data directory
+- Make a data directory. Start the docker and mount /data.
 
+```sh 
 mkdir /data
-
-Start the docker and mount /data
-
 docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
+```
 
-The first step it to deploy usearch. Since this software has to be licensed, so I can not include it in the docker, which is in a public repository.  Run the following commands to install a copy of usearch licensed to the wawrik lab. You can get your own license for free from the programs website. Please do so, if you are going to do this beyond the tutorials here.
+- Deploy usearch. Since this software has to be licensed, so I can not include it in the docker, which is in a public repository.  Run the following commands to install a copy of usearch licensed to the Wawrik lab. Please get your own license for free from the programs website, if you are going to use usearch beyond the tutorials here.
 
+```sh 
 cd /opt/local/software/
 mkdir usearch
 cd usearch
@@ -22,9 +24,9 @@ wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/usearch8.0.1517_i86linux3
 chmod 777 *
 cd /usr/local/bin
 ln -s /opt/local/software/usearch/usearch8.0.1517_i86linux32 ./usearch
+```
 
-Now change to your data directory and make an output directory
-
+- Change to your data directory and make an output directory
 
 
 Dowload the 16S database, read files, and the necessary perl scripts.
