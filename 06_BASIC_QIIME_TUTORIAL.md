@@ -30,83 +30,104 @@ root@bioinformatics:~# docker run -t -i -v ~/data:/data bwawrik/qiime:latest
 ```sh
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/install_usearch.sh
 sh install_usearch.sh
+```
+
+- The install_usearch.sh shell script contain the following commands, in case you want to do this manually:
+
 ```sh
-
-The install_usearch.sh shell script contain the following commands, in case you want to do this manually:
-
 mkdir -p /opt/local/software/usearch cd /opt/local/software/usearch wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/usearch5.2.236_i86linux32wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/usearch6.1.544_i86linux32chmod 777 * cd /usr/local/bin ln -s /opt/local/software/usearch/usearch5.2.236_i86linux32 ./usearch ln -s /opt/local/software/usearch/usearch6.1.544_i86linux32 ./usearch61
+```
 
-Change your directory to /data
+- Change your directory to /data and dowload sample data as well the mapping file
 
+```sh
 cd /data
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/GOM_R1.fastq.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/GOM_R2.fastq.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/GoM_Sept_Mapping.txt
+```
 
-Download the sample data set and the corresponding mapping file:
+- Lets look at the mapping file
 
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/GOM_R1.fastq
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/GOM_R2.fastq
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/GoM_Sept_Mapping.txt
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/prep_sl_fastq.py
-
-Lets look at the mapping file
-
+```sh
 cat GoM_Sept_Mapping.txt
-
+```
 the file should be in the following format:
-
+```sh
 #SampleID    BarcodeSequence    LinkerPrimerSequence    Area    Description
 #Descriptive string identifying the sample              
 sample1   CAACACCA    CAAGAGTTTGATCCTGGCTCAG    tag   none
 sample2    CAACACGT    CAAGAGTTTGATCCTGGCTCAG    tag    none
 sample3    CAACAGCT    CAAGAGTTTGATCCTGGCTCAG    tag    none
+```
 
-Now Check the mappigng file for errors
+- Now Check the mappigng file for errors
 
+```sh
 validate_mapping_file.py -m GoM_Sept_Mapping.txt -o mapping_output -v
 cat mapping_output/GoM_Sept_Mapping.log
+```
 
-You should get an output saying that :
+- You should get an output saying that :
 
+```sh
 "No errors or warnings found in mapping file"
+```
 
-Join the fastq files to stich reads together
-Note: p: percent maximum difference; m: minimum overlap; o: output directory
+- Join the fastq files to stich reads together (Note: p: percent maximum difference; m: minimum overlap; o: output directory)
 
+```sh
 fastq-join  GOM_R1.fastq  GOM_R2.fastq -p 3 -m 50 -o GoM_16S_Sept.fastq
 mv  GoM_16S_Sept.fastqjoin  GoM_16S_Sept.fastq
+```
 
-Extract your reads and barcodes
+- Extract your reads and barcodes
 
+```sh
 extract_barcodes.py -f GoM_16S_Sept.fastq -m GoM_Sept_Mapping.txt --attempt_read_reorientation -l 12 -o processed_seqs
+```
 
-Split libraries
+- Split libraries
 
+```sh
 split_libraries_fastq.py -i processed_seqs/reads.fastq -b processed_seqs/barcodes.fastq -m  GoM_Sept_Mapping.txt -o processed_seqs/Split_Output/ --barcode_type 12
+```
 
-Pick your OTUs
+### DEFAULT QIIME ANALYSIS USING GREENGENES
 
+- Pick your OTUs
+
+```sh
 pick_open_reference_otus.py -i processed_seqs/Split_Output/seqs.fna -o OTUs
+```
 
-Inspect the BIOM file
+- Inspect the BIOM file
 
+```sh
 biom summarize-table -i OTUs/otu_table_mc2_w_tax_no_pynast_failures.biom
+```
 
-Run QIIME core diversity analysis
+- Run QIIME core diversity analysis
 
+```sh
 core_diversity_analyses.py -o cdout/ -i  OTUs/otu_table_mc2_w_tax_no_pynast_failures.biom -m GoM_Sept_Mapping.txt -t OTUs/rep_set.tre -e 20
+```
 
-Retrieving your output
+- Retrieving your output
 
-Log out of your droplet.  Then use secure copy (scp) to retrieve your files to your local drive. In this example, I used a droplet with the IP 45.55.160.193 and retrieved the files to my desktop on my macbook.  Make sure you replace this with the IP for your droplet. 
+Log out of your VM.  Then use secure copy (scp) to retrieve your files to your local drive. In this example, I used a droplet with the IP 45.55.160.193 and retrieved the files to my desktop on my macbook.  Make sure you replace this with the IP for your droplet. If you are using a PC, use an FTP program to retrieve your files.
 
-# scp -r root@45.55.160.193:/data/cdout/* ~/Desktop/
+```sh
+scp -r root@45.55.160.193:/data/cdout/* ~/Desktop/
+```
 
-If you are using a PC, use an FTP program to retrieve your files.
+### QIIME ANALYSIS USING SILVA 111
 
+The commands above use a closed reference OTU picking approach with a pre-deployed version of Greengenes at 90% identity. Lets Do this with Silva 111 and open reference picking now.  
 
-======================================================================================================
+- Start by deploying the Silva111 database:
 
-The commands above use a closed reference OTU picking approach with a pre-deployed version of Greengenes at 90% identity. Lets Do this with Silva 111 and open reference picking now.  Start by deploying the Silva111 database:
-
+```sh
 mkdir -p /data/DATABASES/16S
 cd /data/DATABASES/16S
 wget http://www.arb-silva.de/fileadmin/silva_databases/qiime/Silva_111_release.tgz
@@ -116,8 +137,9 @@ gunzip *
 cd ..
 cd rep_set
 gunzip *
+```
 
-Download the parameters file needed for running the analysis using Silva
+- Download the parameters file needed for running the analysis using Silva
 
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/qiime_jamie/qiime_parameters_silva111.par
 
