@@ -1,10 +1,7 @@
--
-
 IMPORTANT:
 THIS TUTORIAL WILL NOT RUN WITH LESS THAN 4GB OF RAM.
 RUN A VM OR LOCAL MACHINE WITH THE APPROPRIATE MEMORY SIZE.
 ALTERNATIVELY, INSTALL Boot2Docker AND RUN THIS TUTORIAL LOCALLY.
-
 -
 
 - Launch an appropriately sized VM
@@ -20,21 +17,19 @@ cd rep_set
 gunzip *
 ```
 
-Start a droplet in Digital Ocean with 4GB of ram or use Boot2Docker (http://boot2docker.io/)
-Download the docker bwawrik/qiime:latest
+- Download the docker bwawrik/qiime:latest and launch it, mounting the data directory
 
-# docker pull bwawrik/qiime:latest
-
-Start the docker and mount /data
-
+```sh
+docker pull bwawrik/qiime:latest
 root@bioinformatics:~# docker run -t -i -v ~/data:/data bwawrik/qiime:latest
+```
 
-Deploy usearch version 5.2.236 and 6.1.544. Qiime does not use the latest version of usearch and will throw an error if you try to use it.
+- Deploy usearch version 5.2.236 and 6.1.544. Qiime does not use the latest version of usearch and will throw an error if you try to use it. Since this software has to be licensed, so I can not include it in the docker, which is in a public repository.  Run the following commands to install usearch licensed to the Wawrik lab. Please get your own license for free from the programs website, if you are going to do this beyond the tutorial described here.
 
-Since this software has to be licensed, so I can not include it in the docker, which is in a public repository.  Run the following commands to install ]usearch licensed to the wawrik lab. You can get your own license for free from the programs website. Please do so, if you are going to do this beyond the tutorials here.
-
+```sh
 wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/install_usearch.sh
 sh install_usearch.sh
+```sh
 
 The install_usearch.sh shell script contain the following commands, in case you want to do this manually:
 
