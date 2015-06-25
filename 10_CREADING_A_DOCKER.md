@@ -1,4 +1,4 @@
-### HOW TO MAKE YOUR OWN DOCKER REPOSITORY
+### HOW TO CREATE A CUSTOM DOCKER REPOSITORY
 
 This tutorial will walk you through making a simple docker that allows you to assemble with Ray and predict ORFs with Prodigal as done in the prior tutorials. Before you can do this, you will need to visit the Docker website and create an account (if you don't have one already).
 
