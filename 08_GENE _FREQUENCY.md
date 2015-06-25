@@ -1,4 +1,6 @@
-Download the docker bwawrik/bioinformatics:latest
+### ASSESSING THE FREQUNCY OF A FUNCTIONAL GENE IN A METAGENOME
+
+- Download the docker bwawrik/bioinformatics:latest
 
 docker pull bwawrik/biorinformatics:latest
 
