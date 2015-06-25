@@ -133,38 +133,55 @@ wget https://github.com/bwawrik/MBIO5810/raw/master/perl_scripts/add_tag.pl
 wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/qiime_default.par
 ```
 
-Then add a barcode from the barcodes.txt file.  Lets use the third one in the list.
+- Add a barcode from the barcodes.txt file.  Lets use the third one in the list.
 
+```sh
 perl add_tag.pl 3 ssu_hits_corrected.fasta
+```
 
-Validate the mapping file
+- Validate the mapping file
 
+```sh
 validate_mapping_file.py -m ssu_hits_corrected.map -o mg_mapping
+```
 
-Split libraries
+- Split libraries
 
+```sh
 split_libraries.py -f ssu_hits_correctedATCACCAGGTGT.fasta -m  ssu_hits_corrected.map -o mg_processed_seqs/ --barcode_type 12
+```
 
-Validate the fasta file
+- Validate the fasta file
 
+```sh
 validate_demultiplexed_fasta.py -i mg_processed_seqs/seqs.fna -m  ssu_hits_corrected.map
 cat seqs.fna_report.log
+```
 
-Lets pick our OTUs and assign taxonomy via closed reference picking
+- Lets pick our OTUs and assign taxonomy via closed reference picking
 note: closed reference is necessary, because reads don't overlap;
  
+```sh
 pick_closed_reference_otus.py -i mg_processed_seqs/seqs.fna -o mg_OTUs -r /data/DATABASES/16S/Silva_111_post/rep_set/97_Silva_111_rep_set.fasta  -t /data/DATABASES/16S/Silva_111_post/taxonomy/97_Silva_111_taxa_map_RDP_6_levels.txt -f
 (* on  your mac: pick_closed_reference_otus.py -i mg_processed_seqs/seqs.fna -o mg_OTUs -r ~/data/DATABASES/16S/Silva_111_post/rep_set/97_Silva_111_rep_set.fasta  -t ~/data/DATABASES/16S/Silva_111_post/taxonomy/97_Silva_111_taxa_map_RDP_6_levels.txt -f)
+```
 
-Inspect the BIOM file
+- Inspect the BIOM file
 
+```sh
 biom summarize-table -i mg_OTUs/otu_table.biom
+```
  
-Make a pie chart
+- Make a pie chart
 
+```sh
 summarize_taxa_through_plots.py -i mg_OTUs/otu_table.biom -o mg_taxplots -m  ssu_hits_corrected.map -p qiime_default.par -f
+```
 
-The parameters file contains one line:
+- The parameters file contains one line:
+
+```sh
 plot_taxa_summary:chart_type bar
 If you would like to make a pie chart instead, edit the the parameters file with nano to:
 plot_taxa_summary:chart_type pie
+```
