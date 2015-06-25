@@ -182,6 +182,10 @@ summarize_taxa_through_plots.py -i mg_OTUs/otu_table.biom -o mg_taxplots -m  ssu
 
 ```sh
 plot_taxa_summary:chart_type bar
-If you would like to make a pie chart instead, edit the the parameters file with nano to:
+```
+
+- If you would like to make a pie chart instead, edit the the parameters file with nano to:
+
+```sh
 plot_taxa_summary:chart_type pie
 ```
