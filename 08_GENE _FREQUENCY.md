@@ -2,13 +2,16 @@
 
 - Download the docker bwawrik/bioinformatics:latest
 
+```sh
 docker pull bwawrik/biorinformatics:latest
+```
 
-Make a data directory
-*note: if you are working locally on a mac using boot2docker you will need to work in ~/data. Please replace where appropriate
+- Make a data directory. If you are working locally on a mac using boot2docker you will need to work in ~/data. Please replace where appropriate
 
+```sh
 mkdir /data
 (* on  your mac: mkdir ~/data)
+```
 
 Start the docker and mount /data
 
