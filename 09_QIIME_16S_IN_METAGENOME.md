@@ -1,9 +1,8 @@
-#NOTE: This tutorial should replace tutorial #5 & 7
+### QIIME ANALYSIS OF 16S CONTAINING READS IN A METAGENOME
 
-Start a droplet with at least 1GB of memory in Digital Ocean and ssh into it.
-Alternatively (and better) install and use boot2docker.
+- Start a VM with at least 1GB of memory and ssh into it.Alternatively (and better) install and use boot2docker.
 
-Download the docker bwawrik/bioinformatics:latest
+- Download the docker bwawrik/bioinformatics:latest
 
 docker pull bwawrik/bioinformatics:latest
 
