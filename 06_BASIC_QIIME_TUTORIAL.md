@@ -1,13 +1,14 @@
-==========================================================================================
+-
 IMPORTANT:
 THIS TUTORIAL WILL NOT RUN WITH LESS THAN 4GB OF RAM.
 RUN A VM OR LOCAL MACHINE WITH THE APPROPRIATE MEMORY SIZE.
 ALTERNATIVELY, INSTALL Boot2Docker AND RUN THIS TUTORIAL LOCALLY.
-==========================================================================================
+-
 
 - Launch an appropriately sized VM
 - Install the Silva111 database if its not installed yet
 
+```sh 
 mkdir -p /data/DATABASES/16S
 cd /data/DATABASES/16S
 wget http://www.arb-silva.de/fileadmin/silva_databases/qiime/Silva_111_release.tgz
@@ -15,6 +16,7 @@ tar -xvf Silva_111_release.tgzcd Silva_111_post/rep_set_aligned
 gunzip *cd ..
 cd rep_set
 gunzip *
+```
 
 Start a droplet in Digital Ocean with 4GB of ram or use Boot2Docker (http://boot2docker.io/)
 Download the docker bwawrik/qiime:latest
