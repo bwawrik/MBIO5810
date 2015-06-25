@@ -61,7 +61,7 @@ cat  fastqc_before/232_R1_40k_fastqc/fastqc_data.txt fastqc_before/232_R1_40k_fa
 
 ```sh
 wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/cutadapt.conf
-```sh
+```
 
 - Trim your adapters off your data
 
