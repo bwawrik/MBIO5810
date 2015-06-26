@@ -1,77 +1,91 @@
 ### Basic Assembly Tutorial
 
-- Start a droplet with at least 1GB of memory in Digital Ocean and ssh into it. Alternatively (and better) install and use boot2docker on your local machine.  (See the previous tutorial about [creating and securing your own Digital Ocean droplet](./01_SSH_KEYS.md).)
-- Download the docker bwawrik/bioinformatics:latest
+1. Start a Droplet with at least 1GB of memory in Digital Ocean and ssh into it. Alternatively (and better), install and use [boot2docker](http://boot2docker.io/) on your local machine.  (See the previous tutorial about [creating and securing your own Digital Ocean droplet](./01_SSH_KEYS.md).)
 
-```sh
-docker pull bwawrik/bioinformatics:latest
-```
-- Make a data directory
+1. Download the Docker [`bwawrik/bioinformatics:latest`](https://registry.hub.docker.com/u/bwawrik/bioinformatics/)
 
-```sh
-mkdir /data
-```
+    ```sh
+    docker pull bwawrik/bioinformatics:latest
+    ```
+    
+1. Make a data directory
 
-- Start the docker and mount /data. (See the previous tutorial about [Docker](02_PULLING_A_DOCKER_REPO.md)).
+    ```sh
+    mkdir /data
+    ```
 
-```sh
-docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
-```
+1. Start the docker and mount the `/data` directory. (See the previous tutorial about [Docker](02_PULLING_A_DOCKER_REPO.md)).
 
-- Change your directory to /data
+    ```sh
+    docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
+    ```
 
-```sh 
-cd /data
-```
+1. Change your directory to `/data`
 
-- Download the sample genome data set
+    ```sh 
+    cd /data
+    ```
 
-```sh
-wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/232_R1_40k.fastq.gz
-wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/232_R2_40k.fastq.gz
-```
-- unzip the data files
-```sh
-gunzip *.gz
-```
+1. Download the sample genome data set
+
+    ```sh
+    wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/232_R1_40k.fastq.gz
+    wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/232_R2_40k.fastq.gz
+    ```
+
+1. unzip the data files
+
+    ```sh
+    gunzip *.gz
+    ```
 
 note: These two files represent forward and reverse reads of MySeq genome sequencing run. They are partial files to allow the assembly to complete in a reasonable amount of time. Together the files contain about 5*10^6 bp of sequence, which is about 1x coverage on the genome of SPR.
 
 
 ### Ray Assembly
 
-- Run a Ray assembly with a k-mer setting of 31 as follows
+*Brief [description](http://denovoassembler.sourceforge.net/index.html) of Ray:*
 
-```sh
-Ray -k31 -p 232_R1_40k.fastq 232_R2_40k.fastq -o ray_31/
-```
-- If you wanted to do this with multiple cores do this (e.g. with six cores):
-(This won't work yet. It requires openMPI to work on the docker, which it does not yet do)
+> Ray is a parallel software that computes de novo genome assemblies with next-generation sequencing data.  Ray is written in C++ and can run in parallel on numerous interconnected computers using the message-passing interface (MPI) standard.
 
-```sh
-mpiexec -n 6 Ray -k31 -p output_forward_paired.fastq output_reverse_paired.fastq -o ray_31/
-```
+1. Run a [Ray](http://denovoassembler.sourceforge.net/manual.html) assembly with a [k-mer](https://en.wikipedia.org/wiki/K-mer) setting of 31 as follows
+  
+    ```sh
+    Ray -k31 -p 232_R1_40k.fastq 232_R2_40k.fastq -o ray_31/
+    ```
+
+1. If you wanted to do this with multiple cores do this (e.g. with six cores):
+(This won't work yet. It requires [Open MPI](http://www.open-mpi.org/) to work on the Docker, which it does not yet do.)
+
+    ```sh
+    mpiexec -n 6 Ray -k31 -p output_forward_paired.fastq output_reverse_paired.fastq -o ray_31/
+    ```
 
 ### Velvet Assembly
 
-- Lets try a velvet assembly.
+*Brief [description](https://www.ebi.ac.uk/~zerbino/velvet/) of Velvet:*
 
-```sh
-velveth velvet/ 31 -shortPaired -fastq -separate 232_R1_40k.fastq 232_R2_40k.fastq
-velvetg velvet/
-```
+>Velvet is a de novo genomic assembler specially designed for short read sequencing technologies, such as Solexa or 454, developed by Daniel Zerbino and Ewan Birney at the European Bioinformatics Institute (EMBL-EBI), near Cambridge, in the United Kingdom.  Velvet currently takes in short read sequences, removes errors then produces high quality unique contigs. It then uses paired-end read and long read information, when available, to retrieve the repeated areas between contigs.
 
-- Download the N50 perl script
+1. Let's try a [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/) assembly.
+
+    ```sh
+    velveth velvet/ 31 -shortPaired -fastq -separate 232_R1_40k.fastq 232_R2_40k.fastq
+    velvetg velvet/
+    ```
+
+1. Download the [N50](https://en.wikipedia.org/wiki/N50_statistic) perl script
  
-```sh
-wget https://github.com/bwawrik/MBIO5810/raw/master/perl_scripts/N50.pl
-```
+    ```sh
+    wget https://github.com/bwawrik/MBIO5810/raw/master/perl_scripts/N50.pl
+    ```
 
-- Then assess the N50 stats on both assemblies.
+1. Then assess the N50 stats on both assemblies.
 
-```sh
-perl N50.pl velvet/contigs.fa
-perl N50.pl ray_31/Contigs.fasta
-```
+    ```sh
+    perl N50.pl velvet/contigs.fa
+    perl N50.pl ray_31/Contigs.fasta
+    ```
 
-#### Which is faster ? Which is better ? Why ?
+### Self-Examination
+Which is faster ? Which is better ? Why ?
