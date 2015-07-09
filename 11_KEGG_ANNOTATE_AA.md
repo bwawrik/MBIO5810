@@ -1,5 +1,5 @@
 #### KEGG-Annotation
-#### The purpose of this repository is to describe a simple script of KEGG annotation of AA sequence files
+#### The purpose of this repository is to describe a simple procedure for basic KEGG annotation of AA sequence files
 
 WARNING: THIS TUTORIAL WILL TAKE AT LEAST 10GB OF HARD DRIVE SPACE BECAUSE OF THE KOBAS LIBRARY
 WARKING: 8GM OF DEDICATED MEMORY ARE NEEDED TO RUN THIS
