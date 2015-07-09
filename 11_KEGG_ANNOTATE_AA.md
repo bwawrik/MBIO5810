@@ -4,7 +4,29 @@
 WARNING: THIS TUTORIAL WILL TAKE AT LEAST 10GB OF HARD DRIVE SPACE BECAUSE OF THE KOBAS LIBRARY
 WARKING: 8GM OF DEDICATED MEMORY ARE NEEDED TO RUN THIS
 
-- First, deploy the KOBAS and Uniprot databses for blast, usearch, and diamond
+- Download the docker bwawrik/bioinformatics:latest
+
+```sh
+docker pull bwawrik/biorinformatics:latest
+```
+
+- Make a data directory. If you are working locally on a mac using boot2docker you will need to work in ~/data. Please replace where appropriate
+
+```sh
+mkdir /data
+(* on  your mac: mkdir ~/data)
+```
+
+- Start the docker and mount /data
+
+```sh
+docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
+(* locally on mac: docker run -t -i -v ~/data:/data bwawrik/bioinformatics:latest)
+```
+
+
+
+- Deploy the KOBAS and Uniprot databses for blast, usearch, and diamond
 
 ##### KOBAS
 
