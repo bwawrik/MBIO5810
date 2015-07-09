@@ -36,6 +36,9 @@ sudo chmod 775 *
 ```
 ### Download the files needed for matching gIDs to KEGG numbers
 ```
+wget https://github.com/bwawrik/MBIO5810/raw/master/misc_files/KoAnnotations.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/misc_files/KoGenes.gz
+gunzip *.gz
 ```
 
 ### KEGG annotation procedure
