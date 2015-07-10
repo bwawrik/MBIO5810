@@ -23,3 +23,18 @@
     ```
 
 Congratulations!! You are now running my bioinformatics docker! Perform all your analyses in the `/data` directory. When you exit the docker your files will be in `/data` on your droplet.
+
+## Variations
+Here are some tips if things aren't working as expected, and you're not using the standard Digital Ocean Droplet.
+
+* You may need to install Docker, and start its daemon.  The different branches of Linux have different commands for installing Docker.  Once installed, check the status (and start the daemon if necessary) with 
+    ```shell
+    sudo service docker status
+    sudo service docker start
+    ```
+* You may not be running as root (ie, with admin privileges) by default, so some commands may need to be prefaced with `sudo`.  Typically a command prompt ending with `#` indicates you're root; a prompt ending with `$` indicates you're a normal user who needs `sudo`.
+    ```shell
+    sudo mkdir /data #Instead of just "mkdir /data"
+    
+    sudo docker pull bwawrik/bioinformatics:latest
+    ```
