@@ -12,7 +12,8 @@ ALTERNATIVELY, INSTALL Boot2Docker AND RUN THIS TUTORIAL LOCALLY.
 mkdir -p /data/DATABASES/16S
 cd /data/DATABASES/16S
 wget http://www.arb-silva.de/fileadmin/silva_databases/qiime/Silva_111_release.tgz
-tar -xvf Silva_111_release.tgzcd Silva_111_post/rep_set_aligned
+tar -xvf Silva_111_release.tgz
+cd Silva_111_post/rep_set_aligned
 gunzip *cd ..
 cd rep_set
 gunzip *
