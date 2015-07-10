@@ -10,8 +10,13 @@ docker pull bwawrik/biorinformatics:latest
 - Make a data directory. Start the docker and mount /data.
 
 ```sh 
-mkdir /data
-docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
+cd ~
+mkdir data
+```
+- this creates directory ~/data
+- then launch the docker by mounting ~/data into the folder /data inside the docker
+```
+docker run -t -i -v ~/data:/data bwawrik/bioinformatics:latest
 ```
 
 - Deploy usearch. Since this software has to be licensed, so I can not include it in the docker, which is in a public repository.  Run the following commands to install a copy of usearch licensed to the Wawrik lab. Please get your own license for free from the programs website, if you are going to use usearch beyond the tutorials here.
