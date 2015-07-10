@@ -4,7 +4,7 @@
 
 1. Download the Docker [`bwawrik/bioinformatics:latest`](https://registry.hub.docker.com/u/bwawrik/bioinformatics/)
 
-    ```sh
+    ```
     docker pull bwawrik/bioinformatics:latest
     ```
     
