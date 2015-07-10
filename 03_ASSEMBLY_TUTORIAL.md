@@ -89,3 +89,21 @@ note: These two files represent forward and reverse reads of MySeq genome sequen
 
 ### Self-Examination
 Which is faster ? Which is better ? Why ?
+
+
+- Predict protein coding genes from both
+
+```sh
+prodigal -d temp.orfs.ray.fna -a temp.orfs.ray.faa -i ray31/Contigs.fasta -m -o Ray_temp.txt -p meta -q
+prodigal -d temp.orfs.velvet.fna -a temp.orfs.velvet.faa -i velvet/contigs.fa -m -o velvet_temp.txt -p meta -q
+```
+
+
+system ($system_string);
+
+$system_string = "cut -f1 -d \" \" ".$ResultDirectory."/temp/temp.orfs.fna > ".$ResultDirectory."/prodigal.orfs.fna";
+system ($system_string);
+
+
+$system_string = "cut -f1 -d \" \" ".$ResultDirectory."/temp/temp.orfs.faa > ".$ResultDirectory."/prodigal.orfs.faa";
+system ($system_string);
