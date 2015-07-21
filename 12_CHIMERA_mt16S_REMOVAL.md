@@ -1,4 +1,4 @@
-### Tutorial to identify and remove chimeric and mitochondrial 16S reads in 16S amplicon data
+#### Tutorial to identify and remove chimeric and mitochondrial 16S reads in 16S amplicon data
 
 NOTE:
 THIS TUTORIAL WILL NOT RUN WITH LESS THAN 4GB OF RAM.
@@ -54,6 +54,7 @@ cd /data
 wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/rock_50k_R1.fastq.gz
 wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/rock_50k_R2.fastq.gz
 wget https://github.com/bwawrik/MBIO5810/raw/master/misc_files/rocktype.map
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/qiime_parameters_silva111.par
 gunzip *.gz
 ```
 
@@ -61,79 +62,52 @@ gunzip *.gz
 - Join the fastq files to stich reads together (Note: p: percent maximum difference; m: minimum overlap; o: output directory)
 
 ```sh
-fastq-join  GOM_R1.fastq  GOM_R2.fastq -p 3 -m 50 -o GoM_16S_Sept.fastq
-mv  GoM_16S_Sept.fastqjoin  GoM_16S_Sept.fastq
+fastq-join  rock_50k_R1.fastq  rock_50k_R2.fastq -p 3 -m 50 -o rock_joined
+mv  rock_joined.fastqjoin  rock_joined.fastq
 ```
 
 - Extract your reads and barcodes
 
 ```sh
-extract_barcodes.py -f GoM_16S_Sept.fastq -m GoM_Sept_Mapping.txt --attempt_read_reorientation -l 12 -o processed_seqs
+extract_barcodes.py -f rock_joined.fastq -m rocktype.map --attempt_read_reorientation -l 12 -o processed_seqs
 ```
 
 - Split libraries
 
 ```sh
-split_libraries_fastq.py -i processed_seqs/reads.fastq -b processed_seqs/barcodes.fastq -m  GoM_Sept_Mapping.txt -o processed_seqs/Split_Output/ --barcode_type 12
+split_libraries_fastq.py -i processed_seqs/reads.fastq -b processed_seqs/barcodes.fastq -m rocktype.map -o processed_seqs/Split_Output/ --barcode_type 12
 ```
 
-### DEFAULT QIIME ANALYSIS USING GREENGENES
+#### PICK OTUS USING QIIME 
 
-- Pick your OTUs
-
-```sh
-pick_open_reference_otus.py -i processed_seqs/Split_Output/seqs.fna -o OTUs
-```
-
-- Inspect the BIOM file
-
-```sh
-biom summarize-table -i OTUs/otu_table_mc2_w_tax_no_pynast_failures.biom
-```
-
-- Run QIIME core diversity analysis
-
-```sh
-core_diversity_analyses.py -o cdout/ -i  OTUs/otu_table_mc2_w_tax_no_pynast_failures.biom -m GoM_Sept_Mapping.txt -t OTUs/rep_set.tre -e 20
-```
-
-- Retrieving your output
-
-Log out of your VM.  Then use secure copy (scp) to retrieve your files to your local drive. In this example, I used a droplet with the IP 45.55.160.193 and retrieved the files to my desktop on my macbook.  Make sure you replace this with the IP for your droplet. If you are using a PC, use an FTP program to retrieve your files.
-
-```sh
-scp -r root@45.55.160.193:/data/cdout/* ~/Desktop/
-```
-
-### QIIME ANALYSIS USING SILVA 111
-
-The commands above use a closed reference OTU picking approach with a pre-deployed version of Greengenes at 90% identity. Lets Do this with Silva 111 and open reference picking now.  
-
-- Start by deploying the Silva111 database:
-
-```sh
-mkdir -p /data/DATABASES/16S
-cd /data/DATABASES/16S
-wget http://www.arb-silva.de/fileadmin/silva_databases/qiime/Silva_111_release.tgz
-tar -xvf Silva_111_release.tgz
-cd Silva_111_post/rep_set_aligned
-gunzip *
-cd ..
-cd rep_set
-gunzip *
-```
-
-- Download the parameters file needed for running the analysis using Silva
-
-```sh
-wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/qiime_parameters_silva111.par
-```
+The defaule for qiime is to use Greengenes at 90% identity. I prefer using Silva open reference picking; at least I tend to have gotten better results wih the Silva allignment. I typically use Silva111. 
 
 - Pick your OTUs
 
 ```sh
 pick_de_novo_otus.py -i processed_seqs/Split_Output/seqs.fna -o OTUs_silva -p qiime_parameters_silva111.par
 ```
+
+#### IDENFIFY CHIMERIC SEQUENCES
+
+
+
+
+#### IDENIFY SEQUECNES THAT ARE MITOCHONDRIAL IN ORIGIN
+
+
+
+#### REMOVING THE CONTAMINATING READS
+
+
+
+
+#### COMPLETE THE QIIME BREAKDOWN
+
+
+
+
+
 
 - Inspect the BIOM file
 
