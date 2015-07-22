@@ -63,7 +63,7 @@ gunzip *.gz
 
 ```sh
 fastq-join  rock_50k_R1.fastq  rock_50k_R2.fastq -p 3 -m 50 -o rock_joined
-mv  rock_joined.fastqjoin  rock_joined.fastq
+mv  rock_joinedjoin rock_joined.fastq
 ```
 
 - Extract your reads and barcodes
@@ -90,7 +90,7 @@ pick_de_novo_otus.py -i processed_seqs/Split_Output/seqs.fna -o OTUs_silva -p qi
 
 #### IDENFIFY CHIMERIC SEQUENCES
 
-
+identify_chimeric_seqs.py -m usearch61 -i OTUs_silva/rep_set/seqs_rep_set.fasta -r /data/DATABASES/16S/Silva_111_post/rep_set/90_Silva_111_rep_set.fasta -o chimeric_seqs/
 
 
 #### IDENIFY SEQUECNES THAT ARE MITOCHONDRIAL IN ORIGIN
