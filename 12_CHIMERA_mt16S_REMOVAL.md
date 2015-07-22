@@ -120,24 +120,21 @@ metaxa_output.uncertain.fasta                      22-Jul-2015 02:23            
 
 or the purpose of this tutorial, we will remove mitochonridal OTUs from the data. This requires that you get a list of the OTU identifiers from the 'metaxa_output.mitochondria.fasta' file:
 ```
-grep -e ">" metaxa_output.mitochondria.fasta
-
+grep -e ">" metaxa_output.mitochondria.fasta | sed 's/>//g' | sed 's/ /\t/g' | cut -f 1 > metaxa_output.mitochondria.ids
 ```
-
-
-
 
 #### REMOVING THE CONTAMINATING READS
 
+- first, lets filter out the chimeric seqs by keeping all non-chimeric OTUs
+note: for qiime documentations see : "http://qiime.org/scripts/filter_otus_from_otu_table.html"
 
-filter_otus_from_otu_table.py -i OTUs_Silva/filtered_otu_table.nochimeras.biom -o OTUs_Silva/filtered_otu_table.nochimeras.metaxa.biom -e OTUs_Silva/metataxa_bac_arch_uncertain_only.txt --negate_ids_to_exclude
-
-
-
-
-
-
-
+```
+filter_otus_from_otu_table.py -i OTUs_silva/otu_table.biom -o OTUs_silva/otu_table.no_chimeras.biom -e chimeric_seqs/non_chimeras.txt --negate_ids_to_exclude
+```
+- Now remove all OTUs that look like mitochondrial sequences
+```
+filter_otus_from_otu_table.py -i OTUs_silva/otu_table.no_chimeras.biom -o OTUs_silva/otu_table.no_chimeras.no_mt.biom -e metaxa_output/metaxa_output.mitochondria.ids 
+```
 
 
 #### COMPLETE THE QIIME BREAKDOWN
@@ -156,3 +153,10 @@ Look at the number of sequences in each sample.  In the next command you need to
 ```sh
 core_diversity_analyses.py -o cdout_silva/ -i  OTUs_silva/otu_table.biom -m GoM_Sept_Mapping.txt -t OTUs_silva/rep_set.tre -e 20
 ```
+
+#### SELF EXAMINATION
+
+- Does this data set contain a lot of chimeras ?
+- Does it contain significant mitochrondial and chloroplast contamination ?
+- Rerun the diversity analysis on the original OTUs_silva/otu_table.biom file. Is it different ? Why ?
+- Is significant mitochrondial and chloroplast contamination a common problem ? When might you suspect it ?
