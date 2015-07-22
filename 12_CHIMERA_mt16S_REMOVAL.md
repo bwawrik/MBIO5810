@@ -84,29 +84,31 @@ The defaule for qiime is to use Greengenes at 90% identity. I prefer using Silva
 
 - Pick your OTUs
 
-```sh
+```
 pick_de_novo_otus.py -i processed_seqs/Split_Output/seqs.fna -o OTUs_silva -p qiime_parameters_silva111.par
 ```
 
 #### IDENFIFY CHIMERIC SEQUENCES
 
+```
 identify_chimeric_seqs.py -m usearch61 -i OTUs_silva/rep_set/seqs_rep_set.fasta -r /data/DATABASES/16S/Silva_111_post/rep_set/90_Silva_111_rep_set.fasta -o chimeric_seqs/
-
+```
 
 #### IDENIFY SEQUECNES THAT ARE MITOCHONDRIAL IN ORIGIN
 
-
+```
+mkdir metaxa_output
+cd metaxa_output
+metaxa -i /data/OTUs_silva/rep_set/seqs_rep_set.fasta -o metaxa_output/
+```
 
 #### REMOVING THE CONTAMINATING READS
 
 
+filter_otus_from_otu_table.py -i OTUs_Silva/filtered_otu_table.nochimeras.biom -o OTUs_Silva/filtered_otu_table.nochimeras.metaxa.biom -e OTUs_Silva/metataxa_bac_arch_uncertain_only.txt --negate_ids_to_exclude
 
 
 #### COMPLETE THE QIIME BREAKDOWN
-
-
-
-
 
 
 - Inspect the BIOM file
