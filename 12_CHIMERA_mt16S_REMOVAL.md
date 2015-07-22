@@ -89,10 +89,12 @@ pick_de_novo_otus.py -i processed_seqs/Split_Output/seqs.fna -o OTUs_silva -p qi
 ```
 
 #### IDENFIFY CHIMERIC SEQUENCES
-
 ```
 identify_chimeric_seqs.py -m usearch61 -i OTUs_silva/rep_set/seqs_rep_set.fasta -r /data/DATABASES/16S/Silva_111_post/rep_set/90_Silva_111_rep_set.fasta -o chimeric_seqs/
 ```
+The output here produces two files in the chimeric_seqs/ folder
+- 'chimeras.txt' contains the identifiers of the OTUs that are chimeric
+- 'non_chimeras.txt' contains the identifiers of the non-chimeric OTUs (the ones you want to keep)
 
 #### IDENIFY SEQUECNES THAT ARE MITOCHONDRIAL IN ORIGIN
 
@@ -101,11 +103,41 @@ mkdir metaxa_output
 cd metaxa_output
 metaxa -i /data/OTUs_silva/rep_set/seqs_rep_set.fasta -o metaxa_output/
 ```
+The metaxa folder will contain a series of files. Depending what you want to use, keep, or remove, you will have ot make a judement how to use them:  For the purpose of this tutorial, we will remove mitochonridal OTUs from the data.
+```
+metaxa_output_alignments/                          22-Jul-2015 02:23                   -
+metaxa_output.archaea.fasta                        22-Jul-2015 02:23                 336
+metaxa_output.bacteria.fasta                       22-Jul-2015 02:23               35560
+metaxa_output.chloroplast.fasta                    22-Jul-2015 02:23                1691
+metaxa_output.eukaryota.fasta                      22-Jul-2015 02:23                   0
+metaxa_output.extraction.fasta                     22-Jul-2015 02:22               56949
+metaxa_output.extraction.results                   22-Jul-2015 02:22               25975
+metaxa_output.graph                                22-Jul-2015 02:22               63258
+metaxa_output.mitochondria.fasta                   22-Jul-2015 02:23                7937
+metaxa_output.summary.txt                          22-Jul-2015 02:23                3134
+metaxa_output.uncertain.fasta                      22-Jul-2015 02:23                 764
+```
+
+or the purpose of this tutorial, we will remove mitochonridal OTUs from the data. This requires that you get a list of the OTU identifiers from the 'metaxa_output.mitochondria.fasta' file:
+```
+grep -e ">" metaxa_output.mitochondria.fasta
+
+```
+
+
+
 
 #### REMOVING THE CONTAMINATING READS
 
 
 filter_otus_from_otu_table.py -i OTUs_Silva/filtered_otu_table.nochimeras.biom -o OTUs_Silva/filtered_otu_table.nochimeras.metaxa.biom -e OTUs_Silva/metataxa_bac_arch_uncertain_only.txt --negate_ids_to_exclude
+
+
+
+
+
+
+
 
 
 #### COMPLETE THE QIIME BREAKDOWN
