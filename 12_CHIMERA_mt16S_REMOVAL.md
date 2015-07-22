@@ -136,23 +136,30 @@ filter_otus_from_otu_table.py -i OTUs_silva/otu_table.biom -o OTUs_silva/otu_tab
 filter_otus_from_otu_table.py -i OTUs_silva/otu_table.no_chimeras.biom -o OTUs_silva/otu_table.no_chimeras.no_mt.biom -e metaxa_output/metaxa_output.mitochondria.ids 
 ```
 
-
 #### COMPLETE THE QIIME BREAKDOWN
 
-
-- Inspect the BIOM file
+- Inspect the BIOM files
 
 ```sh
 biom summarize-table -i OTUs_silva/otu_table.biom 
+biom summarize-table -i OTUs_silva/otu_table.no_chimeras.biom
+biom summarize-table -i OTUs_silva/otu_table.no_chimeras.no_mt.biom
+
 ``` 
 
-Look at the number of sequences in each sample.  In the next command you need to set the '-e' parameter, which is the sampling depth for rarefaction.  'e' should not exceed the lowest number in the result form this command.
+Look at the number of sequences in each sample.  In the next command you need to set the '-e' parameter, which is the sampling depth for rarefaction.  'e' should generally not exceed the lowest number in the result form this command. Lets use 20 here, though, since really small values can also lead to failure of the analysis.
 
 - Run QIIME core diversity analysis
 
 ```sh
-core_diversity_analyses.py -o cdout_silva/ -i  OTUs_silva/otu_table.biom -m GoM_Sept_Mapping.txt -t OTUs_silva/rep_set.tre -e 20
+core_diversity_analyses.py -o cdout_silva_original/ -i  OTUs_silva/otu_table.biom -m rocktype.map -t OTUs_silva/rep_set.tre -e 20
+
+core_diversity_analyses.py -o cdout_silva_corrected/ -i  OTUs_silva/otu_table.no_chimeras.no_mt.biom -m rocktype.map -t OTUs_silva/rep_set.tre -e 20
+
 ```
+- Your qiime output without removal of chimeric or mitochondrial sequences will be in 'cdout_silva_original/'
+- Your qiime output after removal of chimeric or mitochondrial sequences will be in 'cdout_silva_corrected/'
+
 
 #### SELF EXAMINATION
 
