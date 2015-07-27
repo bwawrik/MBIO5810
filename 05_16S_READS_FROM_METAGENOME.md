@@ -45,13 +45,13 @@ wget https://github.com/bwawrik/MBIO5810/raw/master/perl_scripts/uclust_search_d
 gunzip *
 ```
 
-- Download the pre-compliled udb database of known 16S rRNA genes
+- Download the SILVA 111 database of known 16S rRNA genes
 
 ```sh 
-wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/SSURef_111_candidate_db.udb
+wget http://mgmic.oscer.ou.edu/sequence_data/tutorials/SSURef_111_candidate_db.fasta
 ```
 
-- If you downloaded your own SSU fasta reference file you can prepare 16S database for searching by creating a UDB datase as follows
+- Prepare 16S database for searching by creating a UDB datase as follows
 
 ```sh 
 usearch -makeudb_usearch SSURef_111_candidate_db.fasta -output SSURef_111_candidate_db.udb
