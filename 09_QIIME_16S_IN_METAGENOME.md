@@ -76,7 +76,7 @@ read_fastq -i VIGDIS3_forward_paired.50K.fq | write_fasta -o VIGDIS3_forward_pai
 
 ```sh 
 cd /data/DATABASES/16S/Silva_111_post/rep_set
-usearch -makeudb_usearch 90_Silva_111_rep_set.fasta -output SSURef_111_candidate_db.udb
+usearch8 -makeudb_usearch 90_Silva_111_rep_set.fasta -output SSURef_111_candidate_db.udb
 ```
 
 - Now run your usearch command
