@@ -6,7 +6,32 @@ Genome sequencing has become very routine. Unfortunately, very few projects thes
 Wu, D.Y., Jospin, G., and Eisen, J.A. (2013) Systematic Identification of Gene Families for Use as "Markers" for Phylogenetic and Phylogeny-Driven Ecological Studies of Bacteria and Archaea and Their Major Subgroups. Plos One 8.
 ```
 
+##### Getting Started
 
+- Download the docker bwawrik/bioinformatics:latest
+
+```sh
+docker pull bwawrik/biorinformatics:latest
+```
+
+- Make a data directory. If you are working locally on a mac using boot2docker you will need to work in ~/data. Please replace where appropriate
+
+```sh
+mkdir /data
+(* on  your mac: mkdir ~/data)
+```
+
+- Start the docker and mount /data
+
+```sh
+docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
+(* locally on mac: docker run -t -i -v ~/data:/data bwawrik/bioinformatics:latest)
+```
+
+- Download the data files.  
+
+
+I'm giving you two fasta files here of predicted amino acid sequences.  These are derived from genome bins, one from a metagenome (SDB_ONE.faa), the other from single cell genomcis experiments (.
 
 
 DO THE HMM SEARCH
