@@ -30,6 +30,11 @@ docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
 
 - Download the data files.  
 
+```sh
+https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/SDB_ONE.faa
+https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/F21.faa.gz
+gunzip F21.faa.gz
+```
 
 I'm giving you two fasta files here of predicted amino acid sequences.  These are derived from genome bins, one from a metagenome (SDB_ONE.faa), the other from single cell genomcis experiments (.
 
