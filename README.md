@@ -18,7 +18,7 @@ This repository contains the following current tutorials:
 | [Creating a Custom Docker](10_CREATING_A_DOCKER.md) | Creating your own Docker files |
 | [KEGG annotation of Protein Sequences](11_KEGG_ANNOTATE_AA.md) | Conducting KEGG annotation of predicted AA sequences |
 | [Removing chimeras and mtRNA](12_CHIMERA_mt16S_REMOVAL.md) | Removing contaminaing sequences from amplicon data |
-| [Assessent Draft Genome Completeness](13_DRAFT_GENOME_COMPLETENESS.md) | Determine Genome Bin Completeness |
+| [Draft Genome Completeness](13_DRAFT_GENOME_COMPLETENESS.md) | Genome Completeness with single copy marker genes|
 | []() |  |
 | []() |  |
 
