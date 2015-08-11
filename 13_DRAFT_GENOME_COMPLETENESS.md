@@ -31,43 +31,52 @@ docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
 #### DOWNLOAD THE DATA FILES
 
 ```sh
-https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/SDB_ONE.faa
-https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/F21.faa.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/SDB_ONE.faa
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/F21.faa.gz
+wget https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/sc_markers_bacteria.hmm
 gunzip F21.faa.gz
-
 ```
 
 #### RUN THE HMM SEARCH
 
-I'm giving you two fasta files here of predicted amino acid sequences.  These are derived from genome bins, one from a metagenome (SDB_ONE.faa), the other from single cell genomcis experiments (.
+I'm giving you two fasta files here of predicted amino acid sequences.  These are derived from genome bins, one from a metagenome (SDB_ONE.faa), the other from single cell genomcis experiments (F21.faa).  The .hmm file contains the models for 111 single copy markger genes found in all bacteria.
 
-
-DO THE HMM SEARCH
-
+- The first step is to run an HMM search of your HMM models agains each of the amino acid sequences. I'm applying an E score of 1E-10 here. This is relatively conservative. The commands below are for the SDB_ONE.faa file.
 
 ```sh 
 hmmsearch -E 0.0000000001 --domtblout SDB_one_sscmarkers.domtblout.txt /data/DATABASES/SINGLE_COPY_GENE_HMMs/sc_markers_bacteria.hmm SDB_ONE.faa > SDB_one_sscmarkers.hmmsearch.txt
 ```
 
-FIND ALL THE HITS
+"--domblout" creates a tab delimited output file which we will use to count the number of unique hits.  The other file contains the complete HMM search output in case you are interested in it.
+
+#### COUNT THE NUMBER OF UNIQUE HITS
+
+- Lets break down the --domblout output
 
 ```sh
 cat SDB_one_sscmarkers.domtblout.txt | sed '/^#/ d' | awk '{print $4}'
 ```
 
-UNIQUE HITS
+The 'sed' command removes all annoation lines, which start with a '#' character.
+the 'awk' command extracts the fourth column, which contains the single copy marker gene identifiers.
+
+
+- We can get the UNIQUE HITS using 'sort'
 
 ```sh
 cat SDB_one_sscmarkers.domtblout.txt | sed '/^#/ d' | awk '{print $4}' | sort -u
 ```
 
-COUNT THEM
+- All that is left is to count them
 
 ```sh
 cat SDB_one_sscmarkers.domtblout.txt | sed '/^#/ d' | awk '{print $4}' | sort -u | wc -l
 ```
 
+#### SELF EVALUATION
 
+- Run the analysis for the F21.faa file. Which is more complete, F21 or SDB ?
+- Run the analysis on a complete genome you obtain from Genbank. Can you find all 111 single copy marker genes ?
 
 
 
