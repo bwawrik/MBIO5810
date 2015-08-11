@@ -28,13 +28,16 @@ docker run -t -i -v /data:/data bwawrik/bioinformatics:latest
 (* locally on mac: docker run -t -i -v ~/data:/data bwawrik/bioinformatics:latest)
 ```
 
-- Download the data files.  
+#### DOWNLOAD THE DATA FILES
 
 ```sh
 https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/SDB_ONE.faa
 https://github.com/bwawrik/MBIO5810/raw/master/sequence_data/F21.faa.gz
 gunzip F21.faa.gz
+
 ```
+
+#### RUN THE HMM SEARCH
 
 I'm giving you two fasta files here of predicted amino acid sequences.  These are derived from genome bins, one from a metagenome (SDB_ONE.faa), the other from single cell genomcis experiments (.
 
@@ -48,28 +51,23 @@ hmmsearch -E 0.0000000001 --domtblout SDB_one_sscmarkers.domtblout.txt /data/DAT
 
 FIND ALL THE HITS
 
-awk '{print $4}' SDB_one_sscmarkers.domtblout.txt 
+```sh
+cat SDB_one_sscmarkers.domtblout.txt | sed '/^#/ d' | awk '{print $4}'
+```
 
 UNIQUE HITS
 
-awk '{print $4}' SDB_one_sscmarkers.domtblout.txt | sort -u
+```sh
+cat SDB_one_sscmarkers.domtblout.txt | sed '/^#/ d' | awk '{print $4}' | sort -u
+```
 
 COUNT THEM
 
-awk '{print $4}' SDB_one_sscmarkers.domtblout.txt | sort -u | wc -l
+```sh
+cat SDB_one_sscmarkers.domtblout.txt | sed '/^#/ d' | awk '{print $4}' | sort -u | wc -l
+```
 
 
 
-hmmsearch -E 0.00001 --domtblout SDB_one_sscmarkers.domtblout.txt /data/DATABASES/SINGLE_COPY_GENE_HMMs/sc_markers_bacteria.hmm SDB_ONE.faa > SDB_one_sscmarkers.hmmsearch.txt
-hmmsearch -E 0.00001 --domtblout SCADC_sscmarkers.domtblout.txt /data/DATABASES/SINGLE_COPY_GENE_HMMs/sc_markers_bacteria.hmm SCADC.faa > SDB_one_sscmarkers.hmmsearch.txt
-hmmsearch -E 0.00001 --domtblout D17_sscmarkers.domtblout.txt /data/DATABASES/SINGLE_COPY_GENE_HMMs/sc_markers_bacteria.hmm D17.faa > SDB_one_sscmarkers.hmmsearch.txt
-hmmsearch -E 0.00001 --domtblout ME_1_sscmarkers.domtblout.txt /data/DATABASES/SINGLE_COPY_GENE_HMMs/sc_markers_bacteria.hmm ME_1.faa > SDB_one_sscmarkers.hmmsearch.txt
-hmmsearch -E 0.00001 --domtblout F21_sscmarkers.domtblout.txt /data/DATABASES/SINGLE_COPY_GENE_HMMs/sc_markers_bacteria.hmm F21.faa > SDB_one_sscmarkers.hmmsearch.txt
 
-
-awk '{print $4}' SDB_one_sscmarkers.domtblout.txt | sort -u | wc -l
-awk '{print $4}' SCADC_sscmarkers.domtblout.txt | sort -u | wc -l
-awk '{print $4}' D17_sscmarkers.domtblout.txt | sort -u | wc -l
-awk '{print $4}' ME_1_sscmarkers.domtblout.txt | sort -u | wc -l
-awk '{print $4}' F21_sscmarkers.domtblout.txt | sort -u | wc -l
 
