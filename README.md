@@ -22,9 +22,8 @@ This repository contains the following current tutorials:
 | []() |  |
 | []() |  |
 
-
 ### Schedule
-In the summer of 2015, we'll meet Friday mornings in the 310 GLC.
+In the summer of 2015, we'll meet Friday mornings in the 310 GLC.  The [Fall 2015 schedule](presentations-2015-fall) is being scheduled now.  Please let Boris know if you are willing to present  -- 30-45 minutes would be great.  All topics that relate are welcome.
 
 ### Participation
 We encourage input and collaboration from anyone interested.  If you're familar with GitHub, feel free to submit a [pull request](https://github.com/bwawrik/MBIO5810/pulls) if you'd like to contribute.  If you'd like to report a bug or make a suggestion, please create a GitHub [issue](https://github.com/bwawrik/MBIO5810/issues); issues are a usually a good place to ask public questions too.  Please note that this project is released with a [Contributor Code of Conduct](conduct.md). By participating in this project you agree to abide by its terms.
