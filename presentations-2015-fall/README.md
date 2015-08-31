@@ -4,7 +4,7 @@ Welcome to the Fall 2015 presentations of the  Bioinformatics Breakfast Club.  C
 
 |        |                    |
 | ------ | ------------------ |
-| Aug 28 | Scientific Collaboration with GitHub <br/> by Will Beasley, Dept of Pediatrics, Biomedical and Behavioral Methodology Core ([BBMC](http://ouhsc.edu/BBMC/)). |
+| Aug 28 | [Scientific Collaboration with GitHub](https://rawgit.com/bwawrik/MBIO5810/master/presentations-2015-fall/2015-08-28/beasley-github-2015-08.html#/) <br/> by Will Beasley, Dept of Pediatrics, Biomedical and Behavioral Methodology Core ([BBMC](http://ouhsc.edu/BBMC/)). |
 | September 4 | Network Analysis of Transcriptomes <br/> by Kangmei Zhao (Barley Lab) |
 | Sept 11 |  --  |
 | Sept 18 | Shotgun Metabolomics <br/> by Vincent Bonifay (Sunner Lab) |
