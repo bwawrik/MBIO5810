@@ -23,7 +23,7 @@ gunzip *
 
 ```sh
 docker pull bwawrik/qiime:latest
-root@bioinformatics:~# docker run -t -i -v ~/data:/data bwawrik/qiime:latest
+docker run -t -i -v ~/data:/data bwawrik/qiime:latest
 ```
 
 - Deploy usearch version 5.2.236 and 6.1.544. Qiime does not use the latest version of usearch and will throw an error if you try to use it. Since this software has to be licensed, so I can not include it in the docker, which is in a public repository.  Run the following commands to install usearch licensed to the Wawrik lab. Please get your own license for free from the programs website, if you are going to do this beyond the tutorial described here.
