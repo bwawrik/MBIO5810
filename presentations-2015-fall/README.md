@@ -18,4 +18,4 @@ Welcome to the Fall 2015 presentations of the  Bioinformatics Breakfast Club.  C
 | Nov 13  |  --  |
 | Nov 20  |  (Thanksgiving Week)  |
 | Nov 27  |  --  |
-| Dec 4   |  --  |
+| Dec 4   |  Lise Pingault (Libault Lab)  |
