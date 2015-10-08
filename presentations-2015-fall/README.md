@@ -10,9 +10,9 @@ Welcome to the Fall 2015 presentations of the  Bioinformatics Breakfast Club.  C
 | Sept 18 | Shotgun Metabolomics <br/> by Vincent Bonifay (Sunner Lab) |
 | Sept 25 | Codon Bias in Transcriptomes <br/> by Joshua Cooper (Wawrik Lab) |
 | Oct 2   |  Akiko Ogawa (Beech Lab) <br/>  |
-| Oct 9   | Clustering and Correlation Techniques <br/> by Anuj Guruvacharya (Broughtons Lab) |
+| Oct 9   | -- |
 | Oct 16  | Secondary Mabolite Gene Analysis <br/> by Brian Bill (Stevenson Lab) |
-| Oct 23  |  --  |
+| Oct 23  |  Clustering and Correlation Techniques <br/> by Anuj Guruvacharya (Broughtons Lab) |
 | Oct 30  |  Vince Sandifer <br/>  |
 | Nov 6   |  --  |
 | Nov 13  |  --  |
