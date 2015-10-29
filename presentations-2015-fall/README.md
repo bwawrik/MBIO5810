@@ -14,8 +14,8 @@ Welcome to the Fall 2015 presentations of the  Bioinformatics Breakfast Club.  C
 | Oct 16  | -- |
 | Oct 23  |  Clustering and Correlation Techniques <br/> by Anuj Guruvacharya (Broughtons Lab) |
 | Oct 30  |  --  |
-| Nov 6   |  Vince Sandifer (Duncan Lab)  |
+| Nov 6   |  --  |
 | Nov 13  |   Secondary Mabolite Gene Analysis <br/> by Brian Bill (Stevenson Lab)  |
 | Nov 20  |  (Thanksgiving Week)  |
-| Nov 27  | --   |
+| Nov 27  | Vince Sandifer (Duncan Lab)   |
 | Dec 4   |  Lise Pingault (Libault Lab)  |
