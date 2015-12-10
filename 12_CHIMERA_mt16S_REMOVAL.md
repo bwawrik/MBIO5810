@@ -100,8 +100,7 @@ The output here produces two files in the chimeric_seqs/ folder
 
 ```
 mkdir metaxa_output
-cd metaxa_output
-metaxa -i /data/OTUs_silva/rep_set/seqs_rep_set.fasta -o metaxa_output/
+metaxa -i /data/OTUs_silva/rep_set/seqs_rep_set.fasta -o metaxa_output/metaxa_output
 ```
 The metaxa folder will contain a series of files. Depending what you want to use, keep, or remove, you will have ot make a judement how to use them:  For the purpose of this tutorial, we will remove mitochonridal OTUs from the data.
 ```
