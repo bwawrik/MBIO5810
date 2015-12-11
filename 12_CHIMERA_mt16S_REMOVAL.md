@@ -151,9 +151,9 @@ Look at the number of sequences in each sample.  In the next command you need to
 - Run QIIME core diversity analysis
 
 ```sh
-core_diversity_analyses.py -o cdout_silva_original/ -i  OTUs_silva/otu_table.biom -m rocktype.map -t OTUs_silva/rep_set.tre -e 20
+core_diversity_analyses.py -o cdout_silva_original -i  OTUs_silva/otu_table.biom -m rocktype.map -t OTUs_silva/rep_set.tre -e 20
 
-core_diversity_analyses.py -o cdout_silva_corrected/ -i  OTUs_silva/otu_table.no_chimeras.no_mt.biom -m rocktype.map -t OTUs_silva/rep_set.tre -e 20
+core_diversity_analyses.py -o cdout_silva_corrected -i  OTUs_silva/otu_table.no_chimeras.no_mt.biom -m rocktype.map -t OTUs_silva/rep_set.tre -e 20
 
 ```
 - Your qiime output without removal of chimeric or mitochondrial sequences will be in 'cdout_silva_original/'
