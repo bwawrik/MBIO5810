@@ -14,7 +14,8 @@ cd /data/DATABASES/16S
 wget http://www.arb-silva.de/fileadmin/silva_databases/qiime/Silva_111_release.tgz
 tar -xvf Silva_111_release.tgz
 cd Silva_111_post/rep_set_aligned
-gunzip *cd ..
+gunzip *
+cd ..
 cd rep_set
 gunzip *
 ```
